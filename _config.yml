@@ -43,14 +43,13 @@ latex:
 # https://jupyterbook.org/en/stable/interactive/thebe.html
 
 launch_buttons:
-  notebook_interface: "jupyterlab"
+  notebook_interface: "classic"
   binderhub_url: "https://mybinder.org"
   thebe: true
 
 repository:
   url: https://github.com/brightway-lca/jupyter-book-brightway-documentation
-  path_to_book: docs  # Optional path to your book, relative to the repository root
-  branch: master  # Which branch of the repository should be used when creating links (optional)
+  branch: master
 
 #######################################################################################
 # bibliography settings

@@ -2,13 +2,8 @@ name: bw
 channels:
   - conda-forge
 dependencies:
-  # core funcitonality
-  - python=3.10
-  # data science
-  - scipy  
   - pandas
   - numpy
   # plotting
   - matplotlib
-  # lca
   - cmutel::brightway2
