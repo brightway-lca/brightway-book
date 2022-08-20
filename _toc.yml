@@ -2,8 +2,12 @@
 # Learn more at https://jupyterbook.org/customize/toc.html
 
 format: jb-book
-root: 0_main_page
+root: content/0_main_page
 chapters:
-- file: notebooks/1_lca_seminars/2015_lca_seminar_1_introduction
-- file: notebooks/1_lca_seminars/2015_lca_seminar_2_sensitivity.ipynb
-- file: notebooks/1_lca_seminars/2015_lca_seminar_1_introduction.ipynb
+  - caption: Some notebooks from the brightway2 repo...
+    - file: content/notebooks/1_lca_seminars/2015_lca_seminar_1_introduction
+    - file: content/notebooks/1_lca_seminars/2015_lca_seminar_2_sensitivity.ipynb
+    - file: content/notebooks/1_lca_seminars/2015_lca_seminar_1_introduction.ipynb
+  - caption: Testing only!
+    - file: content/markdown/1_hybridization
+    - file: content/notebooks/test/3_executable
