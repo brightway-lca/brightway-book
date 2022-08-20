@@ -3,11 +3,13 @@
 
 format: jb-book
 root: content/0_main_page
-chapters:
-  - caption: Some notebooks from the brightway2 repo...
-    - file: content/notebooks/1_lca_seminars/2015_lca_seminar_1_introduction
-    - file: content/notebooks/1_lca_seminars/2015_lca_seminar_2_sensitivity.ipynb
-    - file: content/notebooks/1_lca_seminars/2015_lca_seminar_1_introduction.ipynb
+parts:
+  - caption: Some notebooks from the brightway2 repo
+    chapters:
+      - file: content/notebooks/1_lca_seminars/2015_lca_seminar_1_introduction
+      - file: content/notebooks/1_lca_seminars/2015_lca_seminar_2_sensitivity
+      - file: content/notebooks/1_lca_seminars/2015_lca_seminar_3_hybrid
   - caption: Testing only!
-    - file: content/markdown/1_hybridization
-    - file: content/notebooks/test/3_executable
+    chapters:
+      - file: content/markdown/1_hybridization
+      - file: content/notebooks/test/3_executable
