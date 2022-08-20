@@ -18,10 +18,7 @@ only_build_toc_files: true
 
 #######################################################################################
 # book settings
-https://jupyterbook.org/en/stable/customize/config.html
 
-# Force re-execution of notebooks on each build.
-# See https://jupyterbook.org/content/execute.html
 execute:
   execute_notebooks: force
   allow_errors: false
