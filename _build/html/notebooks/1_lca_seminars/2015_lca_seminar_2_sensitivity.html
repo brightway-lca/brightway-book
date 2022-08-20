@@ -1,0 +1,1582 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Class 7 - Sensitivity testing &#8212; Brightway Documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="Class 1: Introduction and setting up a simple LCA calculation" href="2015_lca_seminar_1_introduction.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint">Work in progress!</div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Brightway Documentation</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../0_main_page.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="2015_lca_seminar_1_introduction.html">
+   Class 1: Introduction and setting up a simple LCA calculation
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Class 7 - Sensitivity testing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="2015_lca_seminar_1_introduction.html">
+   Class 1: Introduction and setting up a simple LCA calculation
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/brightway-lca/jupyter-book-brightway-documentation/master?urlpath=lab/tree/docs/notebooks/1_lca_seminars/2015_lca_seminar_2_sensitivity.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/notebooks/1_lca_seminars/2015_lca_seminar_2_sensitivity.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Class 7 - Sensitivity testing
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bibliography">
+     Bibliography
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#summary-of-global-and-local-sensitivity-testing">
+       Summary of global and local sensitivity testing:
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#variance-based-global-tests">
+       Variance-based global tests:
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#distribution-based-global-tests">
+       Distribution-based global tests:
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#design-of-experiments">
+       Design of experiments
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#installing-salib">
+     Installing SALib
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#set-up-our-problem-and-objective-function">
+   Set up our problem and objective function
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#local-sensitivity-testing">
+   Local sensitivity testing
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#global-sensitivity-testing">
+   Global sensitivity testing
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sampling">
+     Sampling
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#analysis">
+   Analysis
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#morris-method-of-elementary-effects">
+     Morris method of elementary effects
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sobol-sequence">
+     Sobol sequence
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Class 7 - Sensitivity testing</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Class 7 - Sensitivity testing
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bibliography">
+     Bibliography
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#summary-of-global-and-local-sensitivity-testing">
+       Summary of global and local sensitivity testing:
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#variance-based-global-tests">
+       Variance-based global tests:
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#distribution-based-global-tests">
+       Distribution-based global tests:
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#design-of-experiments">
+       Design of experiments
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#installing-salib">
+     Installing SALib
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#set-up-our-problem-and-objective-function">
+   Set up our problem and objective function
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#local-sensitivity-testing">
+   Local sensitivity testing
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#global-sensitivity-testing">
+   Global sensitivity testing
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sampling">
+     Sampling
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#analysis">
+   Analysis
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#morris-method-of-elementary-effects">
+     Morris method of elementary effects
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sobol-sequence">
+     Sobol sequence
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="class-7-sensitivity-testing">
+<h1>Class 7 - Sensitivity testing<a class="headerlink" href="#class-7-sensitivity-testing" title="Permalink to this headline">#</a></h1>
+<p>In this class, we will integrate a transport model with LCA. More specifically, we will take the output from a Matsim model run, and assess the potential for autonomous electric vehicles to reduce the environmental impact of vehicular traffic.</p>
+<section id="bibliography">
+<h2>Bibliography<a class="headerlink" href="#bibliography" title="Permalink to this headline">#</a></h2>
+<section id="summary-of-global-and-local-sensitivity-testing">
+<h3>Summary of global and local sensitivity testing:<a class="headerlink" href="#summary-of-global-and-local-sensitivity-testing" title="Permalink to this headline">#</a></h3>
+<p><a class="reference external" href="http://eu.wiley.com/WileyCDA/WileyTitle/productCd-0470059974.html">Global sensitivity analysis</a></p>
+</section>
+<section id="variance-based-global-tests">
+<h3>Variance-based global tests:<a class="headerlink" href="#variance-based-global-tests" title="Permalink to this headline">#</a></h3>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Elementary_effects_method">Morris method of elementary effects</a></p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Fourier_amplitude_sensitivity_testing">Fourier amplitude sensitivity testing</a></p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Variance-based_sensitivity_analysis">Variance-based sensitivity analysis</a></p>
+</section>
+<section id="distribution-based-global-tests">
+<h3>Distribution-based global tests:<a class="headerlink" href="#distribution-based-global-tests" title="Permalink to this headline">#</a></h3>
+<p><a class="reference external" href="http://www.sciencedirect.com/science/article/pii/S1364815215000237">A simple and efficient method for global sensitivity analysis based on cumulative distribution functions (PAWN)</a></p>
+<p><a class="reference external" href="https://www.researchgate.net/publication/228343915_Relative_Entropy_Based_Method_for_Probabilistic_Sensitivity_Analysis_in_Engineering_Design">Relative entropy based method for probabilistic sensitivity analysis in
+engineering design (Entropy)</a></p>
+<p><a class="reference external" href="http://www.sciencedirect.com/science/article/pii/S0951832006000883">A new uncertainty importance measure (δ-sensitivity)</a></p>
+</section>
+<section id="design-of-experiments">
+<h3>Design of experiments<a class="headerlink" href="#design-of-experiments" title="Permalink to this headline">#</a></h3>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Design_of_experiments">Design of experiments (Wikipedia)</a></p>
+<p><a class="reference external" href="http://www.itl.nist.gov/div898/handbook/pri/section1/pri11.htm">Design of experiments (NIST Engineering statistics handbook)</a></p>
+</section>
+</section>
+<section id="installing-salib">
+<h2>Installing <a class="reference external" href="http://salib.readthedocs.org/en/latest/index.html">SALib</a><a class="headerlink" href="#installing-salib" title="Permalink to this headline">#</a></h2>
+<ol class="simple">
+<li><p>Open a new terminal window, and activate the <code class="docutils literal notranslate"><span class="pre">bw2</span></code> environment, e.g. by running <code class="docutils literal notranslate"><span class="pre">C:\bw2-python\bw2-env.bat</span></code>.</p></li>
+<li><p>Run the command <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--no-cache-dir</span> <span class="pre">SALib</span></code>.</p></li>
+</ol>
+<p>Before getting started, make sure you have upgrade the Brightway2 packages. You should have at least the following:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">SALib</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Need to install SALib (https://github.com/SALib/SALib). See section above.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Need to install SALib (https://github.com/SALib/SALib). See section above.
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now import the necessary libraries:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">brightway2</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">bw2data.logs</span> <span class="kn">import</span> <span class="n">get_logger</span>
+<span class="kn">import</span> <span class="nn">collections</span>
+<span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">pyprind</span>
+<span class="kn">import</span> <span class="nn">random</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="nn">Input In [2],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">brightway2</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">bw2data.logs</span> <span class="kn">import</span> <span class="n">get_logger</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">collections</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;brightway2&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Prepare for graphics</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib.patches</span> <span class="kn">import</span> <span class="n">Rectangle</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;muted&quot;</span><span class="p">,</span> <span class="n">color_codes</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning: inspect.getargspec() is deprecated, use inspect.signature() instead
+Warning: axes.color_cycle is deprecated and replaced with axes.prop_cycle; please use the latter.
+</pre></div>
+</div>
+</div>
+</div>
+<p>Can reuse project from Class 5</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">projects</span><span class="o">.</span><span class="n">current</span> <span class="o">=</span> <span class="s2">&quot;Class 5&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This class will load and process the input data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Data</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="k">assert</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s2">&quot;matsim-files&quot;</span><span class="p">,</span> <span class="s2">&quot;person-distances.csv&quot;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pd</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_person_distances</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sd</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_station_distances</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_routes</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">locations</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_locations</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span> <span class="o">=</span> <span class="n">get_logger</span><span class="p">(</span><span class="s2">&quot;transport-model&quot;</span><span class="p">,</span> <span class="n">logging</span><span class="o">.</span><span class="n">INFO</span> <span class="k">if</span> <span class="n">debug</span> <span class="k">else</span> <span class="n">logging</span><span class="o">.</span><span class="n">WARNING</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">debug</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Writing to log:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">handlers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">baseFilename</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">reduce_variables</span><span class="p">()</span>
+    
+    <span class="k">def</span> <span class="nf">reduce_variables</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">included</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Riniken&#39;</span><span class="p">,</span> <span class="s1">&#39;Remigen&#39;</span><span class="p">,</span> <span class="s1">&#39;Villigen&#39;</span><span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sd</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">sd</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">in</span> <span class="n">included</span> <span class="ow">and</span> <span class="n">k</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">in</span> <span class="n">included</span><span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rt</span> <span class="o">=</span> <span class="p">[</span><span class="n">rt</span> <span class="k">for</span> <span class="n">rt</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">rt</span> <span class="k">if</span> <span class="n">rt</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="ow">in</span> <span class="n">included</span> <span class="ow">and</span> <span class="n">rt</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="ow">in</span> <span class="n">included</span><span class="p">]</span>
+    
+    <span class="k">def</span> <span class="nf">get_person_distances</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s2">&quot;matsim-files&quot;</span><span class="p">,</span> <span class="s2">&quot;person-distances.csv&quot;</span><span class="p">),</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">csvfile</span><span class="p">:</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">csvfile</span><span class="p">)])</span>
+        <span class="k">return</span> <span class="n">data</span>
+    
+    <span class="k">def</span> <span class="nf">get_station_distances</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s2">&quot;matsim-files&quot;</span><span class="p">,</span> <span class="s2">&quot;station-distances.csv&quot;</span><span class="p">),</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">csvfile</span><span class="p">:</span>
+            <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">csvfile</span><span class="p">)</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="p">{(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span> <span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">csvfile</span><span class="p">)}</span>
+        <span class="k">return</span> <span class="n">data</span>
+
+    <span class="k">def</span> <span class="nf">get_routes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">translate_time</span><span class="p">(</span><span class="n">o</span><span class="p">):</span>
+            <span class="n">h</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">s</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">o</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">)]</span>
+            <span class="k">return</span> <span class="nb">round</span><span class="p">(</span><span class="n">s</span> <span class="o">/</span> <span class="mi">60</span> <span class="o">+</span> <span class="n">m</span> <span class="o">+</span> <span class="mi">60</span> <span class="o">*</span> <span class="n">h</span><span class="p">)</span>
+        
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s2">&quot;matsim-files&quot;</span><span class="p">,</span> <span class="s2">&quot;routes.csv&quot;</span><span class="p">),</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">csvfile</span><span class="p">:</span>
+            <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">csvfile</span><span class="p">)</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">line</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">]</span>
+        
+        <span class="c1"># Add one minute to end time, as car is still in transit in end minute</span>
+        <span class="k">return</span> <span class="p">[(</span><span class="n">translate_time</span><span class="p">(</span><span class="n">obj</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">translate_time</span><span class="p">(</span><span class="n">obj</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">obj</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="nb">float</span><span class="p">(</span><span class="n">obj</span><span class="p">[</span><span class="mi">3</span><span class="p">]),</span> <span class="n">obj</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="nb">float</span><span class="p">(</span><span class="n">obj</span><span class="p">[</span><span class="mi">5</span><span class="p">]))</span> 
+                <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">data</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">get_locations</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s2">&quot;matsim-files/locations.json&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">Data</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The basic model structure is the following:</p>
+<p>We have a set of cars in village centers (<code class="docutils literal notranslate"><span class="pre">Village</span></code>). The total numbers of cars is chosen before the model is run; the proportion of cars in each village comes from the number of trips originating in that village.</p>
+<p>We have a global timer in our model. Each time the timer clicks forward, for each car (<code class="docutils literal notranslate"><span class="pre">Car</span></code>), one or more of the following happens:</p>
+<ul class="simple">
+<li><p>The car is underway; a certain amount of energy is removed from its batteries (this is done all at once)</p></li>
+<li><p>The car is in a charging station; a certain amount of energy is add to its batteries, if necessary</p></li>
+<li><p>The car is dispatched to a new route</p></li>
+<li><p>The car arrives at a charging station</p></li>
+</ul>
+<p>We will go through the other classes in class :)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Car</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="c1"># Reduce memory usage - we will create thousands of these</span>
+    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;charge&#39;</span><span class="p">,</span> <span class="s1">&#39;capacity&#39;</span><span class="p">,</span> <span class="s1">&#39;consumption&#39;</span><span class="p">,</span> <span class="s1">&#39;charge_rate&#39;</span><span class="p">,</span> <span class="s1">&#39;battery_recovery&#39;</span><span class="p">,</span> <span class="s1">&#39;used&#39;</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">capacity</span><span class="p">,</span> <span class="n">consumption</span><span class="p">,</span> <span class="n">charge_rate</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">i</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">capacity</span> <span class="o">=</span> <span class="n">capacity</span> <span class="ow">or</span> <span class="mi">15</span> <span class="o">+</span> <span class="mi">30</span> <span class="o">*</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="c1"># kWh</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">charge</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">24</span> <span class="o">*</span> <span class="mi">60</span><span class="p">))</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">capacity</span>  <span class="c1"># Log of battery charge (kWh) over day</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">battery_recovery</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">charge</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">consumption</span> <span class="o">=</span> <span class="n">consumption</span> <span class="c1"># kWh / meter</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">charge_rate</span> <span class="o">=</span> <span class="n">charge_rate</span> <span class="c1"># kWh / minute</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">used</span> <span class="o">=</span> <span class="kc">False</span>
+        
+    <span class="k">def</span> <span class="nf">assign_route</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">route</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Deplete battery by distance * self.consumption over route time.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">used</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="n">energy_use</span> <span class="o">=</span> <span class="n">route</span><span class="o">.</span><span class="n">distance</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">consumption</span>
+        <span class="k">assert</span> <span class="n">route</span><span class="o">.</span><span class="n">end</span> <span class="o">-</span> <span class="n">route</span><span class="o">.</span><span class="n">start</span>
+        <span class="c1"># Any charging in minute of departure or future is cancelled</span>
+        <span class="k">if</span> <span class="n">route</span><span class="o">.</span><span class="n">start</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">charge</span><span class="p">[</span><span class="n">route</span><span class="o">.</span><span class="n">start</span><span class="p">:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">charge</span><span class="p">[</span><span class="n">route</span><span class="o">.</span><span class="n">start</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">charge</span><span class="p">[</span><span class="n">route</span><span class="o">.</span><span class="n">start</span><span class="p">:</span><span class="n">route</span><span class="o">.</span><span class="n">end</span><span class="p">]</span> <span class="o">-=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">energy_use</span><span class="p">,</span> <span class="n">route</span><span class="o">.</span><span class="n">end</span> <span class="o">-</span> <span class="n">route</span><span class="o">.</span><span class="n">start</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">charge</span><span class="p">[</span><span class="n">route</span><span class="o">.</span><span class="n">end</span><span class="p">:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">charge</span><span class="p">[</span><span class="n">route</span><span class="o">.</span><span class="n">end</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">charge_battery</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Add `self.charge_rate` to each minute in the future until fully charged.</span>
+<span class="sd">        </span>
+<span class="sd">        Returns whether current battery state is at maximum capacity at `time`.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">used</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">charge</span><span class="p">[</span><span class="n">time</span><span class="p">]</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">capacity</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>        
+        
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">charge</span><span class="p">[</span><span class="n">time</span><span class="p">]</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">capacity</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span>
+        
+        <span class="n">minutes_of_full_charge</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="nb">int</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">capacity</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">charge</span><span class="p">[</span><span class="n">time</span><span class="p">])</span> <span class="o">//</span> <span class="bp">self</span><span class="o">.</span><span class="n">charge_rate</span><span class="p">),</span> <span class="mi">24</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">-</span> <span class="n">time</span><span class="p">)</span>
+        <span class="n">charging_end</span> <span class="o">=</span> <span class="n">time</span> <span class="o">+</span> <span class="n">minutes_of_full_charge</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">charge</span><span class="p">[</span><span class="n">time</span><span class="p">:</span><span class="n">charging_end</span><span class="p">]</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">minutes_of_full_charge</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">charge_rate</span>
+        <span class="k">if</span> <span class="n">charging_end</span> <span class="o">&lt;</span> <span class="mi">24</span> <span class="o">*</span> <span class="mi">60</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">charge</span><span class="p">[</span><span class="n">charging_end</span><span class="p">:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">capacity</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">charge</span><span class="p">[</span><span class="n">time</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mf">0.25</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">capacity</span><span class="p">:</span>
+            <span class="n">time_until_80_percent_full</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">capacity</span> <span class="o">*</span> <span class="mf">0.8</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">charge</span><span class="p">[</span><span class="n">time</span><span class="p">])</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">charge_rate</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">battery_recovery</span><span class="p">[</span><span class="n">time</span><span class="p">:</span><span class="n">time</span> <span class="o">+</span> <span class="n">time_until_80_percent_full</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">charge</span><span class="p">[</span><span class="n">time</span><span class="p">]</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">capacity</span>
+            
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> car </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;Used&quot;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">used</span> <span class="k">else</span> <span class="s2">&quot;Unused&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Event</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">namedtuple</span><span class="p">(</span><span class="s2">&quot;Event&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;event&#39;</span><span class="p">,</span> <span class="s1">&#39;kind&#39;</span><span class="p">,</span> <span class="s1">&#39;car&#39;</span><span class="p">,</span> <span class="s1">&#39;location&#39;</span><span class="p">])</span>
+
+<span class="k">class</span> <span class="nc">EventLog</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span> <span class="o">=</span> <span class="p">[[]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">24</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)]</span>
+        
+    <span class="k">def</span> <span class="nf">add_route</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">car</span><span class="p">,</span> <span class="n">route</span><span class="p">,</span> <span class="n">rebalance</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">[</span><span class="n">route</span><span class="o">.</span><span class="n">start</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Event</span><span class="p">(</span>
+                <span class="n">event</span><span class="o">=</span><span class="s1">&#39;leave&#39;</span><span class="p">,</span> 
+                <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;rebalance&#39;</span> <span class="k">if</span> <span class="n">rebalance</span> <span class="k">else</span> <span class="s1">&#39;route&#39;</span><span class="p">,</span> 
+                <span class="n">car</span><span class="o">=</span><span class="n">car</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> 
+                <span class="n">location</span><span class="o">=</span><span class="n">route</span><span class="o">.</span><span class="n">from_</span>
+            <span class="p">))</span> 
+        <span class="n">data</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Adding event: leave, time: </span><span class="si">{}</span><span class="s2">, car: </span><span class="si">{}</span><span class="s2">, from: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">route</span><span class="o">.</span><span class="n">start</span><span class="p">,</span> <span class="n">car</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">route</span><span class="o">.</span><span class="n">from_</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">[</span><span class="n">route</span><span class="o">.</span><span class="n">end</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Event</span><span class="p">(</span>
+                <span class="n">event</span><span class="o">=</span><span class="s1">&#39;arrive&#39;</span><span class="p">,</span> 
+                <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;rebalance&#39;</span> <span class="k">if</span> <span class="n">rebalance</span> <span class="k">else</span> <span class="s1">&#39;route&#39;</span><span class="p">,</span> 
+                <span class="n">car</span><span class="o">=</span><span class="n">car</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> 
+                <span class="n">location</span><span class="o">=</span><span class="n">route</span><span class="o">.</span><span class="n">to</span>
+            <span class="p">))</span> 
+        <span class="n">data</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Adding event: arrive, time: </span><span class="si">{}</span><span class="s2">, car: </span><span class="si">{}</span><span class="s2">, from: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">route</span><span class="o">.</span><span class="n">end</span><span class="p">,</span> <span class="n">car</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">route</span><span class="o">.</span><span class="n">to</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">arriving</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">[</span><span class="n">time</span><span class="p">]</span> <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">event</span> <span class="o">==</span> <span class="s1">&#39;arrive&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;Event log with </span><span class="si">{}</span><span class="s2"> entries&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Unavailable</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+
+<span class="k">class</span> <span class="nc">Village</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">cars</span><span class="p">,</span> <span class="n">distances</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cars</span> <span class="o">=</span> <span class="n">cars</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">neighbors</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_neighbors</span><span class="p">(</span><span class="n">distances</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">24</span> <span class="o">*</span> <span class="mi">60</span><span class="p">))</span>
+                    
+    <span class="k">def</span> <span class="nf">arrival</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">car</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cars</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">car</span><span class="p">)</span>
+        <span class="n">car</span><span class="o">.</span><span class="n">charge_battery</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">departure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">car</span><span class="p">):</span>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">cars</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">cars</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">car</span><span class="p">)]</span>
+        
+    <span class="k">def</span> <span class="nf">available</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">route</span><span class="p">,</span> <span class="n">extra_distance</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span>
+                <span class="p">[</span><span class="n">car</span> 
+                 <span class="k">for</span> <span class="n">car</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cars</span> 
+                 <span class="k">if</span> <span class="n">car</span><span class="o">.</span><span class="n">charge</span><span class="p">[</span><span class="n">route</span><span class="o">.</span><span class="n">start</span><span class="p">]</span> <span class="o">&gt;</span> <span class="p">(</span><span class="n">route</span><span class="o">.</span><span class="n">distance</span> <span class="o">+</span> <span class="n">extra_distance</span><span class="p">)</span> <span class="o">*</span> <span class="n">car</span><span class="o">.</span><span class="n">consumption</span>
+                 <span class="ow">and</span> <span class="ow">not</span> <span class="n">car</span><span class="o">.</span><span class="n">battery_recovery</span><span class="p">[</span><span class="n">route</span><span class="o">.</span><span class="n">start</span><span class="p">]],</span> 
+                <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">charge</span><span class="p">[</span><span class="n">route</span><span class="o">.</span><span class="n">start</span><span class="p">],</span> <span class="n">x</span><span class="o">.</span><span class="n">id</span><span class="p">),</span>
+            <span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">Unavailable</span>
+        
+    <span class="k">def</span> <span class="nf">get_neighbors</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">distances</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">sorted</span><span class="p">([(</span><span class="n">k</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">v</span><span class="p">)</span> 
+                       <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">sd</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> 
+                       <span class="k">if</span> <span class="n">k</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> 
+                       <span class="ow">and</span> <span class="n">k</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">],</span> 
+                      <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="k">def</span> <span class="nf">write_car_log</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">[</span><span class="n">time</span><span class="p">]</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cars</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;Village: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;Route runs from route.start to route.end - 1; car is only available the minute *after* the route is finished.&quot;&quot;&quot;</span>
+<span class="n">Route</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;Route&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;start&#39;</span><span class="p">,</span> <span class="s1">&#39;end&#39;</span><span class="p">,</span> <span class="s1">&#39;from_&#39;</span><span class="p">,</span> <span class="s1">&#39;to&#39;</span><span class="p">,</span> <span class="s1">&#39;distance&#39;</span><span class="p">])</span>
+
+<span class="k">class</span> <span class="nc">AEVModel</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">aev_efficiency_factor</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">charge_rate</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span> 
+                 <span class="n">battery_capacity</span><span class="o">=</span><span class="mf">31.2</span><span class="p">,</span> <span class="n">num_cars</span><span class="o">=</span><span class="mf">1e4</span><span class="p">,</span> <span class="n">avg_speed</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
+                 <span class="n">consumption</span><span class="o">=</span><span class="mf">0.0002</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">aev_efficiency_factor</span> <span class="o">=</span> <span class="n">aev_efficiency_factor</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">charge_rate</span> <span class="o">=</span> <span class="n">charge_rate</span>            <span class="c1"># kWh/minute, from http://www.pluginamerica.org/drivers-seat/understanding-electric-vehicle-charging</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">battery_capacity</span> <span class="o">=</span> <span class="n">battery_capacity</span>  <span class="c1"># kWh - ecoinvent 2.2 default, 312 kg, 100 Wh/kg</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_cars</span> <span class="o">=</span> <span class="n">num_cars</span>                  <span class="c1"># Total number of cars to simluate</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">avg_speed</span> <span class="o">=</span> <span class="n">avg_speed</span>                <span class="c1"># meters/minute - 30 km/h</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">consumption</span> <span class="o">=</span> <span class="n">consumption</span>            <span class="c1"># kWh / meter - ecoinvent 2.2 default, 0.2 kWh/km</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">total_distance</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">from_neighbors</span> <span class="o">=</span> <span class="mi">0</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">event_log</span> <span class="o">=</span> <span class="n">EventLog</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">routes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">setup_routes</span><span class="p">(</span><span class="n">avg_speed</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">villages</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cars</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">setup_transport_system</span><span class="p">(</span><span class="n">num_cars</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">setup_routes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">avg_speed</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Create data structure of (start, end, from_, to, distance) named tuples for routes.</span>
+<span class="sd">        </span>
+<span class="sd">        Uses `avg_speed` to translate distances to and from village centres into time.&quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">rt</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="nb">round</span><span class="p">(</span><span class="n">obj</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">&gt;</span> <span class="nb">round</span><span class="p">(</span><span class="n">obj</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">Route</span><span class="p">(</span>
+                    <span class="n">start</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">obj</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">obj</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">/</span> <span class="n">avg_speed</span><span class="p">),</span>
+                    <span class="n">end</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">obj</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">obj</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">/</span> <span class="n">avg_speed</span><span class="p">),</span>
+                    <span class="n">from_</span><span class="o">=</span><span class="n">obj</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> 
+                    <span class="n">to</span><span class="o">=</span><span class="n">obj</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> 
+                    <span class="n">distance</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">sd</span><span class="p">[(</span><span class="n">obj</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">obj</span><span class="p">[</span><span class="mi">4</span><span class="p">])]</span> <span class="o">+</span> <span class="n">obj</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="n">obj</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span> 
+                <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">rt</span> 
+                <span class="c1"># Must finish before day is over</span>
+                <span class="k">if</span> <span class="nb">round</span><span class="p">(</span><span class="n">obj</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">obj</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">/</span> <span class="n">avg_speed</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">24</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+        
+    <span class="k">def</span> <span class="nf">setup_transport_system</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_cars</span><span class="p">):</span>
+        <span class="n">car_count</span> <span class="o">=</span> <span class="n">itertools</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+        <span class="n">count</span> <span class="o">=</span> <span class="p">{</span><span class="n">obj</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">sd</span><span class="p">}</span>            
+        <span class="k">for</span> <span class="n">route</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">routes</span><span class="p">:</span>
+            <span class="n">count</span><span class="p">[</span><span class="n">route</span><span class="o">.</span><span class="n">from_</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">count</span><span class="p">[</span><span class="n">route</span><span class="o">.</span><span class="n">to</span><span class="p">]</span> <span class="o">-=</span> <span class="mf">0.5</span>  <span class="c1"># Penalize for incoming cars</span>
+
+        <span class="c1"># print(np.histogram(list(count.values())))</span>
+
+        <span class="c1"># At least a weight of 50 in each origin</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">count</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">value</span> <span class="o">&lt;</span> <span class="mi">150</span><span class="p">:</span>
+                <span class="n">count</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="mi">150</span>
+            <span class="k">elif</span> <span class="n">value</span> <span class="o">&gt;</span> <span class="mi">500</span><span class="p">:</span>
+                <span class="n">count</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="mi">500</span> <span class="c1"># 500 + 0.5 * (value - 500)</span>
+        
+        <span class="n">total_trips</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">count</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+        
+        <span class="n">villages</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">{</span><span class="n">obj</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">sd</span><span class="p">}:</span>
+            <span class="n">num_cars</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">count</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">/</span> <span class="n">total_trips</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_cars</span><span class="p">)</span>
+            <span class="n">villages</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">Village</span><span class="p">(</span>
+                <span class="n">name</span><span class="p">,</span> 
+                <span class="p">[</span><span class="n">Car</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">car_count</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">battery_capacity</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">consumption</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">charge_rate</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_cars</span><span class="p">)],</span>
+                <span class="n">data</span><span class="o">.</span><span class="n">sd</span>
+            <span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">villages</span><span class="p">,</span> <span class="p">{</span><span class="n">car</span><span class="o">.</span><span class="n">id</span><span class="p">:</span> <span class="n">car</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">villages</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">for</span> <span class="n">car</span> <span class="ow">in</span> <span class="n">v</span><span class="o">.</span><span class="n">cars</span><span class="p">}</span>
+    
+    <span class="k">def</span> <span class="nf">rebalance_villages</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
+        <span class="c1"># TODO</span>
+        <span class="k">return</span>
+
+    <span class="k">def</span> <span class="nf">dispatch_car</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">route</span><span class="p">):</span>
+        <span class="n">village</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">villages</span><span class="p">[</span><span class="n">route</span><span class="o">.</span><span class="n">from_</span><span class="p">]</span>
+        <span class="n">car</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">car</span> <span class="o">=</span> <span class="n">village</span><span class="o">.</span><span class="n">available</span><span class="p">(</span><span class="n">route</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">route</span><span class="o">.</span><span class="n">end</span> <span class="o">-</span> <span class="n">route</span><span class="o">.</span><span class="n">start</span><span class="p">:</span>
+                <span class="n">village</span><span class="o">.</span><span class="n">departure</span><span class="p">(</span><span class="n">car</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">event_log</span><span class="o">.</span><span class="n">add_route</span><span class="p">(</span><span class="n">car</span><span class="p">,</span> <span class="n">route</span><span class="p">)</span>
+            <span class="n">car</span><span class="o">.</span><span class="n">assign_route</span><span class="p">(</span><span class="n">route</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">total_distance</span> <span class="o">+=</span> <span class="n">route</span><span class="o">.</span><span class="n">distance</span>
+            <span class="k">return</span>
+        <span class="k">except</span> <span class="n">Unavailable</span><span class="p">:</span>
+            <span class="k">pass</span>
+        <span class="k">for</span> <span class="n">neighbor</span><span class="p">,</span> <span class="n">extra_distance</span> <span class="ow">in</span> <span class="n">village</span><span class="o">.</span><span class="n">neighbors</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">nv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">villages</span><span class="p">[</span><span class="n">neighbor</span><span class="p">]</span>
+                <span class="n">delay</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">extra_distance</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">avg_speed</span><span class="p">)</span>
+                <span class="n">total_distance</span> <span class="o">=</span> <span class="n">route</span><span class="o">.</span><span class="n">distance</span> <span class="o">+</span> <span class="n">extra_distance</span>
+                <span class="n">car</span> <span class="o">=</span> <span class="n">nv</span><span class="o">.</span><span class="n">available</span><span class="p">(</span><span class="n">route</span><span class="p">,</span> <span class="n">total_distance</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">route</span><span class="o">.</span><span class="n">end</span> <span class="o">+</span> <span class="n">delay</span> <span class="o">&gt;=</span> <span class="mi">24</span> <span class="o">*</span> <span class="mi">60</span><span class="p">:</span>
+                    <span class="c1"># Route can&#39;t be finished due to delays, so is dropped</span>
+                    <span class="k">return</span>
+                <span class="n">route</span> <span class="o">=</span> <span class="n">Route</span><span class="p">(</span><span class="n">route</span><span class="o">.</span><span class="n">start</span><span class="p">,</span> <span class="n">route</span><span class="o">.</span><span class="n">end</span> <span class="o">+</span> <span class="n">delay</span><span class="p">,</span> <span class="n">neighbor</span><span class="p">,</span> <span class="n">route</span><span class="o">.</span><span class="n">to</span><span class="p">,</span> <span class="n">total_distance</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">route</span><span class="o">.</span><span class="n">end</span> <span class="o">-</span> <span class="n">route</span><span class="o">.</span><span class="n">start</span><span class="p">:</span>
+                    <span class="n">nv</span><span class="o">.</span><span class="n">departure</span><span class="p">(</span><span class="n">car</span><span class="p">)</span>
+                <span class="n">car</span><span class="o">.</span><span class="n">assign_route</span><span class="p">(</span><span class="n">route</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">event_log</span><span class="o">.</span><span class="n">add_route</span><span class="p">(</span><span class="n">car</span><span class="p">,</span> <span class="n">route</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">from_neighbors</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">total_distance</span> <span class="o">+=</span> <span class="n">total_distance</span>
+                <span class="k">return</span>
+            <span class="k">except</span> <span class="n">Unavailable</span><span class="p">:</span>
+                <span class="k">pass</span>
+        <span class="k">raise</span> <span class="n">Unavailable</span>
+    
+    <span class="k">def</span> <span class="nf">iterate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The fundamental model algorithm.&quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">event_log</span><span class="o">.</span><span class="n">arriving</span><span class="p">(</span><span class="n">time</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">villages</span><span class="p">[</span><span class="n">event</span><span class="o">.</span><span class="n">location</span><span class="p">]</span><span class="o">.</span><span class="n">arrival</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cars</span><span class="p">[</span><span class="n">event</span><span class="o">.</span><span class="n">car</span><span class="p">],</span> <span class="n">time</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">rt</span> <span class="ow">in</span> <span class="p">(</span><span class="n">route</span> <span class="k">for</span> <span class="n">route</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">routes</span> <span class="k">if</span> <span class="n">route</span><span class="o">.</span><span class="n">start</span> <span class="o">==</span> <span class="n">time</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dispatch_car</span><span class="p">(</span><span class="n">rt</span><span class="p">)</span>
+        <span class="c1"># self.rebalance_villages(time)</span>
+        <span class="c1"># for v, k in self.villages.items():</span>
+        <span class="c1">#    k.charge_cars(time)        </span>
+        <span class="k">for</span> <span class="n">village</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">villages</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="n">village</span><span class="o">.</span><span class="n">write_car_log</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>        
+    
+    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">pyprind</span><span class="o">.</span><span class="n">prog_bar</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">24</span><span class="o">*</span><span class="mi">60</span><span class="p">)):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">iterate</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wraparound</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">wraparound</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Charge the batteries of the cars which aren&#39;t full by starting again from time 0&quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">car</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cars</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">car</span><span class="o">.</span><span class="n">charge</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">car</span><span class="o">.</span><span class="n">capacity</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="n">minutes_needed</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">car</span><span class="o">.</span><span class="n">capacity</span> <span class="o">-</span> <span class="n">car</span><span class="o">.</span><span class="n">charge</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="n">car</span><span class="o">.</span><span class="n">charge_rate</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="n">car</span><span class="o">.</span><span class="n">charge</span><span class="p">[</span><span class="n">minutes_needed</span><span class="p">]</span> <span class="o">==</span> <span class="n">car</span><span class="o">.</span><span class="n">capacity</span><span class="p">:</span>
+                <span class="c1"># Can charge before first use</span>
+                <span class="n">car</span><span class="o">.</span><span class="n">charge</span><span class="p">[:</span><span class="n">minutes_needed</span><span class="p">]</span> <span class="o">=</span> <span class="n">car</span><span class="o">.</span><span class="n">charge</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">minutes_needed</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">car</span><span class="o">.</span><span class="n">charge_rate</span> 
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">first_use</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">car</span><span class="o">.</span><span class="n">charge</span> <span class="o">&lt;</span> <span class="n">car</span><span class="o">.</span><span class="n">capacity</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">car</span><span class="o">.</span><span class="n">charge</span><span class="p">[:</span><span class="n">first_use</span><span class="p">]</span> <span class="o">=</span> <span class="n">car</span><span class="o">.</span><span class="n">charge</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">first_use</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">car</span><span class="o">.</span><span class="n">charge_rate</span> 
+        
+    <span class="c1"># Interpretation</span>
+    <span class="c1">################</span>
+    
+    <span class="k">def</span> <span class="nf">car_array</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">only_active</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">only_active</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">car</span><span class="o">.</span><span class="n">charge</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> 
+                              <span class="k">for</span> <span class="n">car</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cars</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+                              <span class="k">if</span> <span class="n">car</span><span class="o">.</span><span class="n">used</span><span class="p">])</span> 
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">car</span><span class="o">.</span><span class="n">charge</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> <span class="k">for</span> <span class="n">car</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cars</span><span class="o">.</span><span class="n">values</span><span class="p">()])</span> 
+    
+    <span class="k">def</span> <span class="nf">statistics</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">arr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">car_array</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">total_cars</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cars</span><span class="p">)</span>
+        <span class="n">used</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="mi">1</span> <span class="k">for</span> <span class="n">car</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cars</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="k">if</span> <span class="n">car</span><span class="o">.</span><span class="n">used</span><span class="p">)</span>
+        <span class="n">energy_use</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s1">&#39;cars&#39;</span><span class="p">:</span> <span class="n">total_cars</span><span class="p">,</span>
+            <span class="s1">&#39;cars used&#39;</span><span class="p">:</span> <span class="n">used</span><span class="p">,</span>
+            <span class="s1">&#39;energy used&#39;</span><span class="p">:</span> <span class="n">energy_use</span><span class="p">[</span><span class="n">energy_use</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span>
+            <span class="s1">&#39;energy charged&#39;</span><span class="p">:</span> <span class="n">energy_use</span><span class="p">[</span><span class="n">energy_use</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+        <span class="p">}</span>
+
+    <span class="k">def</span> <span class="nf">consumption_array</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">arr</span> <span class="o">=</span> <span class="n">base_model</span><span class="o">.</span><span class="n">car_array</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">energy_use</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">mask</span> <span class="o">=</span> <span class="n">energy_use</span> <span class="o">&lt;</span> <span class="mi">0</span>
+        <span class="n">energy_use</span><span class="p">[</span><span class="o">~</span><span class="n">mask</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">arr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">result</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">=</span> <span class="n">energy_use</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span>
+        
+    <span class="k">def</span> <span class="nf">charging_array</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">arr</span> <span class="o">=</span> <span class="n">base_model</span><span class="o">.</span><span class="n">car_array</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">energy_use</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">mask</span> <span class="o">=</span> <span class="n">energy_use</span> <span class="o">&gt;</span> <span class="mi">0</span>
+        <span class="n">energy_use</span><span class="p">[</span><span class="o">~</span><span class="n">mask</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">arr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">result</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">=</span> <span class="n">energy_use</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span>
+    
+    <span class="k">def</span> <span class="nf">plot_sample_cars</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+        <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">24</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">car</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cars</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">car</span><span class="o">.</span><span class="n">used</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">car</span><span class="o">.</span><span class="n">charge</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+                <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="n">count</span> <span class="o">&gt;</span> <span class="mi">50</span><span class="p">:</span>
+                <span class="k">break</span>
+
+        <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Time (minutes)&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Time (hours)&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([</span><span class="mi">120</span> <span class="o">*</span> <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">13</span><span class="p">)],</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">24</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Battery storage (kWh)&quot;</span><span class="p">)</span>        
+    
+    <span class="k">def</span> <span class="nf">plot_battery_charge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">only_active</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+        <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">24</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span>
+        <span class="n">ys</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">consumption_array</span><span class="p">()</span>
+
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">)</span>
+
+        <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Time (hours)&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([</span><span class="mi">120</span> <span class="o">*</span> <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">13</span><span class="p">)],</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">24</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="mf">1.1</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Total battery charge (kWh)&quot;</span><span class="p">)</span>  
+        
+    <span class="k">def</span> <span class="nf">plot_charging</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+        <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">24</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span>
+        <span class="n">ys</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">charging_array</span><span class="p">()</span>
+
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">)</span>
+
+        <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Time (hours)&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([</span><span class="mi">120</span> <span class="o">*</span> <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">13</span><span class="p">)],</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">24</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="mf">1.1</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Total charging energy use (kWh)&quot;</span><span class="p">)</span>  
+        
+    <span class="k">def</span> <span class="nf">plot_villages</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">directory_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s2">&quot;villages&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">directory_path</span><span class="p">):</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">directory_path</span><span class="p">)</span>
+
+        <span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s2">&quot;white&quot;</span><span class="p">)</span>
+        <span class="n">rect_color</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">pyprind</span><span class="o">.</span><span class="n">prog_bar</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">24</span> <span class="o">*</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">1</span><span class="p">)):</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">clf</span><span class="p">()</span>
+
+            <span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">,</span> <span class="n">sizes</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[]</span>
+
+            <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">base_model</span><span class="o">.</span><span class="n">villages</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">locations</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+                <span class="n">xs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+                <span class="n">ys</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+                <span class="n">sizes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">log</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+            <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="n">sizes</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s2">&quot;face&quot;</span><span class="p">)</span>
+
+            <span class="n">xlim</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">()</span>
+
+            <span class="n">ylim</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">()</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">ylim</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">ylim</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+            <span class="n">ylim</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">()</span>
+
+            <span class="n">bottom</span> <span class="o">=</span> <span class="n">ylim</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="p">(</span><span class="n">ylim</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">ylim</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">height</span> <span class="o">=</span> <span class="mf">0.05</span> <span class="o">*</span> <span class="p">(</span><span class="n">ylim</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">ylim</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+            <span class="n">left</span> <span class="o">=</span> <span class="n">xlim</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="p">(</span><span class="n">xlim</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">xlim</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">width</span> <span class="o">=</span> <span class="mf">0.8</span> <span class="o">*</span> <span class="p">(</span><span class="n">xlim</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">xlim</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">*</span> <span class="p">(</span><span class="n">i</span> <span class="o">/</span> <span class="mi">1440</span><span class="p">)</span>
+
+            <span class="n">ca</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+            <span class="n">ca</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">Rectangle</span><span class="p">((</span><span class="n">left</span><span class="p">,</span> <span class="n">bottom</span><span class="p">),</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="n">rect_color</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span> <span class="n">visible</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">))</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">width</span><span class="p">,</span> <span class="n">bottom</span> <span class="o">+</span> <span class="n">height</span> <span class="o">+</span> <span class="mf">0.02</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">{:02d}</span><span class="s2">:</span><span class="si">{:02d}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span> <span class="o">//</span> <span class="mi">60</span><span class="p">,</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">60</span><span class="p">),</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+
+            <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([])</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
+            <span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">trim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            
+            <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">directory_path</span><span class="p">,</span> <span class="s2">&quot;car_map_</span><span class="si">{0:04d}</span><span class="s2">.png&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">)),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+            
+        <span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s2">&quot;darkgrid&quot;</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">save_calliope_charge_array</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">arr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">charging_array</span><span class="p">()</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">savetxt</span><span class="p">(</span><span class="s2">&quot;charge.csv&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">arr</span><span class="p">[</span><span class="n">i</span> <span class="o">*</span> <span class="mi">15</span><span class="p">:(</span><span class="n">i</span> <span class="o">*</span> <span class="mi">15</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">24</span> <span class="o">*</span> <span class="mi">4</span><span class="p">)])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="set-up-our-problem-and-objective-function">
+<h1>Set up our problem and objective function<a class="headerlink" href="#set-up-our-problem-and-objective-function" title="Permalink to this headline">#</a></h1>
+<p>We will try to minize the climate change LCA score in this class.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span> <span class="o">=</span> <span class="n">Database</span><span class="p">(</span><span class="s2">&quot;ecoinvent 2.2&quot;</span><span class="p">)</span>
+<span class="n">electric_car</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;transport electric car&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">electric_car</span><span class="p">)</span>
+
+<span class="n">subtracted_electricity</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;operation passenger electric car&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">technosphere</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">input</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">subtracted_electricity</span><span class="p">)</span>
+
+<span class="n">electricity</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;electricity, natural gas, at combined cycle plant, best technology&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">electricity</span><span class="p">)</span>
+
+<span class="n">gwp</span> <span class="o">=</span>  <span class="p">(</span><span class="s1">&#39;IPCC 2013&#39;</span><span class="p">,</span> <span class="s1">&#39;climate change&#39;</span><span class="p">,</span> <span class="s1">&#39;GWP 100a&#39;</span><span class="p">)</span>
+
+<span class="n">lca</span> <span class="o">=</span> <span class="n">LCA</span><span class="p">({</span><span class="n">electric_car</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span> <span class="n">gwp</span><span class="p">)</span>
+<span class="n">lca</span><span class="o">.</span><span class="n">lci</span><span class="p">()</span>
+<span class="n">lca</span><span class="o">.</span><span class="n">lcia</span><span class="p">()</span>
+<span class="n">electric_car_impact</span> <span class="o">=</span> <span class="n">lca</span><span class="o">.</span><span class="n">score</span> <span class="o">/</span> <span class="mi">1000</span> <span class="c1"># Convert km to m</span>
+
+<span class="n">lca</span> <span class="o">=</span> <span class="n">LCA</span><span class="p">({</span><span class="n">subtracted_electricity</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span> <span class="n">gwp</span><span class="p">)</span>
+<span class="n">lca</span><span class="o">.</span><span class="n">lci</span><span class="p">()</span>
+<span class="n">lca</span><span class="o">.</span><span class="n">lcia</span><span class="p">()</span>
+<span class="n">subtracted_electricity_impact</span> <span class="o">=</span> <span class="n">lca</span><span class="o">.</span><span class="n">score</span>
+
+<span class="n">lca</span> <span class="o">=</span> <span class="n">LCA</span><span class="p">({</span><span class="n">electricity</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span> <span class="n">gwp</span><span class="p">)</span>
+<span class="n">lca</span><span class="o">.</span><span class="n">lci</span><span class="p">()</span>
+<span class="n">lca</span><span class="o">.</span><span class="n">lcia</span><span class="p">()</span>
+<span class="n">electricity_impact</span> <span class="o">=</span> <span class="n">lca</span><span class="o">.</span><span class="n">score</span>
+
+<span class="k">def</span> <span class="nf">get_impact</span><span class="p">(</span><span class="n">distance</span><span class="p">,</span> <span class="n">consumption</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">distance</span> <span class="o">*</span> <span class="n">electric_car_impact</span> <span class="o">+</span> 
+            <span class="p">(</span><span class="n">electricity_impact</span> <span class="o">-</span> <span class="n">subtracted_electricity_impact</span><span class="p">)</span> <span class="o">*</span> <span class="n">distance</span> <span class="o">*</span> <span class="n">consumption</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;transport, passenger car, electric, LiMn2O4&#39; (person kilometer, CH, [&#39;transport systems&#39;, &#39;road&#39;])
+&#39;electricity, low voltage, consumer mix, at grid&#39; (kilowatt hour, CH, [&#39;electricity&#39;, &#39;supply mix&#39;])
+&#39;electricity, natural gas, at combined cycle plant, best technology&#39; (kilowatt hour, RER, [&#39;natural gas&#39;, &#39;power plants&#39;])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">initial_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="mi">1</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span> <span class="mf">31.2</span> <span class="o">*</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">0.0002</span><span class="p">))</span>
+
+<span class="n">problem</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;num_vars&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="s1">&#39;names&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;charge rate&#39;</span><span class="p">,</span> <span class="s1">&#39;battery capacity&#39;</span><span class="p">,</span> <span class="s1">&#39;energy consumption&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;groups&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="s1">&#39;bounds&#39;</span><span class="p">:</span> <span class="p">[[</span><span class="mi">1</span><span class="o">/</span><span class="mi">4</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">4</span> <span class="o">+</span> <span class="mi">1</span><span class="o">/</span><span class="mi">8</span><span class="p">],</span>
+               <span class="p">[</span><span class="mf">31.2</span><span class="p">,</span> <span class="mf">31.2</span> <span class="o">*</span> <span class="mi">2</span><span class="p">],</span>
+               <span class="p">[</span><span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0003</span><span class="p">]]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">objective_function</span><span class="p">(</span><span class="n">input_parameters</span><span class="p">):</span>
+    <span class="n">charge_rate</span><span class="p">,</span> <span class="n">battery_capacity</span><span class="p">,</span> <span class="n">consumption</span> <span class="o">=</span> <span class="n">input_parameters</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">AEVModel</span><span class="p">(</span>
+        <span class="n">num_cars</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">rt</span><span class="p">)</span> <span class="o">/</span> <span class="mi">10</span><span class="p">,</span> 
+        <span class="n">charge_rate</span><span class="o">=</span><span class="n">charge_rate</span><span class="p">,</span> 
+        <span class="n">battery_capacity</span><span class="o">=</span><span class="n">battery_capacity</span><span class="p">,</span>
+        <span class="n">consumption</span><span class="o">=</span><span class="n">consumption</span>
+    <span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">get_impact</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">total_distance</span><span class="p">,</span> <span class="n">consumption</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">objective_function</span><span class="p">(</span><span class="n">initial_values</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0%                          100%
+[##############################] | ETA[sec]: 0.000 
+Total time elapsed: 33.218 sec
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>75836.475897054712
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="local-sensitivity-testing">
+<h1>Local sensitivity testing<a class="headerlink" href="#local-sensitivity-testing" title="Permalink to this headline">#</a></h1>
+<p>Vary each parameter independently.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">objective_function</span><span class="p">((</span><span class="mi">1</span><span class="o">/</span><span class="mi">4</span> <span class="o">*</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mf">31.2</span><span class="p">,</span> <span class="mf">0.0002</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0%                          100%
+[##############################] | ETA[sec]: 0.000 
+Total time elapsed: 22.062 sec
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>75843.84091030205
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">objective_function</span><span class="p">((</span><span class="mi">1</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span> <span class="mf">31.2</span> <span class="o">*</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.0002</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0%                          100%
+[##############################] | ETA[sec]: 0.000 
+Total time elapsed: 22.789 sec
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>75842.58283648797
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">objective_function</span><span class="p">((</span><span class="mi">1</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span> <span class="mf">31.2</span><span class="p">,</span> <span class="mf">0.0002</span> <span class="o">*</span> <span class="mf">0.9</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0%                          100%
+[##############################] | ETA[sec]: 0.000 
+Total time elapsed: 22.698 sec
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>71875.88078335376
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="global-sensitivity-testing">
+<h1>Global sensitivity testing<a class="headerlink" href="#global-sensitivity-testing" title="Permalink to this headline">#</a></h1>
+<section id="sampling">
+<h2>Sampling<a class="headerlink" href="#sampling" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">SALib.sample</span> <span class="kn">import</span> <span class="n">saltelli</span> <span class="k">as</span> <span class="n">saltelli_sample</span>
+<span class="kn">from</span> <span class="nn">SALib.sample</span> <span class="kn">import</span> <span class="n">morris</span> <span class="k">as</span> <span class="n">morris_sample</span>
+<span class="kn">from</span> <span class="nn">SALib.analyze</span> <span class="kn">import</span> <span class="n">morris</span> <span class="k">as</span> <span class="n">morris_analyze</span>
+<span class="kn">from</span> <span class="nn">SALib.sample</span> <span class="kn">import</span> <span class="n">fast_sampler</span>
+<span class="kn">from</span> <span class="nn">SALib.sample</span> <span class="kn">import</span> <span class="n">latin</span> <span class="k">as</span> <span class="n">latin_sampler</span>
+<span class="kn">from</span> <span class="nn">SALib.sample</span> <span class="kn">import</span> <span class="n">sobol_sequence</span>
+<span class="kn">from</span> <span class="nn">SALib.analyze</span> <span class="kn">import</span> <span class="n">sobol</span> <span class="k">as</span> <span class="n">sobol_analyze</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">example_problem</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;num_vars&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s1">&#39;names&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;x1&#39;</span><span class="p">,</span> <span class="s1">&#39;x2&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;bounds&#39;</span><span class="p">:</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span>
+               <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">]]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_sample</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">xs</span><span class="p">[:</span><span class="mi">100</span><span class="p">],</span> <span class="n">ys</span><span class="p">[:</span><span class="mi">100</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_sample</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">1000</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">1000</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/2015_lca_seminar_2_sensitivity_30_0.png" src="../../_images/2015_lca_seminar_2_sensitivity_30_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">param_values</span> <span class="o">=</span> <span class="n">saltelli_sample</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">example_problem</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">plot_sample</span><span class="p">(</span><span class="n">param_values</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">param_values</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/2015_lca_seminar_2_sensitivity_31_0.png" src="../../_images/2015_lca_seminar_2_sensitivity_31_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">param_values</span> <span class="o">=</span> <span class="n">fast_sampler</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">example_problem</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">plot_sample</span><span class="p">(</span><span class="n">param_values</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">param_values</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/2015_lca_seminar_2_sensitivity_32_0.png" src="../../_images/2015_lca_seminar_2_sensitivity_32_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">param_values</span> <span class="o">=</span> <span class="n">morris_sample</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">example_problem</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">plot_sample</span><span class="p">(</span><span class="n">param_values</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">param_values</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/2015_lca_seminar_2_sensitivity_33_0.png" src="../../_images/2015_lca_seminar_2_sensitivity_33_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">hammersley</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Yields n Hammersley points on the unit square in the xy plane.</span>
+
+<span class="sd">    From http://www.math.uiuc.edu/~gfrancis/illimath/windows/aszgard_mini/pylibs/cgkit/hammersley.py</span>
+<span class="sd">    </span>
+<span class="sd">    This function yields a sequence of n tuples (x,y) which</span>
+<span class="sd">    represent a point on the unit square. The sequence of points for</span>
+<span class="sd">    a particular n is always the same.  When n changes an entirely new</span>
+<span class="sd">    sequence will be generated.</span>
+<span class="sd">    </span>
+<span class="sd">    This function uses a base of 2.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">u</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">p</span><span class="o">=</span><span class="mf">0.5</span>
+        <span class="n">kk</span> <span class="o">=</span> <span class="n">k</span>
+        <span class="k">while</span> <span class="n">kk</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">kk</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">u</span> <span class="o">+=</span> <span class="n">p</span>
+            <span class="n">p</span> <span class="o">*=</span> <span class="mf">0.5</span>
+            <span class="n">kk</span> <span class="o">&gt;&gt;=</span> <span class="mi">1</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mf">0.5</span><span class="p">)</span><span class="o">/</span><span class="n">n</span>
+        <span class="k">yield</span> <span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+        
+<span class="n">hammersley_iterator</span> <span class="o">=</span> <span class="n">hammersley</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">hammersley_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="nb">next</span><span class="p">(</span><span class="n">hammersley_iterator</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">)])</span>
+<span class="n">plot_sample</span><span class="p">(</span><span class="n">hammersley_values</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">hammersley_values</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/2015_lca_seminar_2_sensitivity_34_0.png" src="../../_images/2015_lca_seminar_2_sensitivity_34_0.png" />
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="analysis">
+<h1>Analysis<a class="headerlink" href="#analysis" title="Permalink to this headline">#</a></h1>
+<section id="morris-method-of-elementary-effects">
+<h2>Morris method of elementary effects<a class="headerlink" href="#morris-method-of-elementary-effects" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">morris_values</span> <span class="o">=</span> <span class="n">morris_sample</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">problem</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">num_levels</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">grid_jump</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">morris_results</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">morris_values</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">morris_values</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+    <span class="n">morris_results</span><span class="p">[</span><span class="n">row</span><span class="p">]</span> <span class="o">=</span> <span class="n">objective_function</span><span class="p">(</span><span class="n">morris_values</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="p">:])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0%                          100%
+[##############################] | ETA[sec]: 0.000 
+Total time elapsed: 34.777 sec
+0%                          100%
+[##############################] | ETA[sec]: 0.000 
+Total time elapsed: 32.029 sec
+0%                          100%
+[##############################] | ETA[sec]: 0.000 
+Total time elapsed: 31.934 sec
+0%                          100%
+[##############################] | ETA[sec]: 0.000 
+Total time elapsed: 32.332 sec
+0%                          100%
+[##############################] | ETA[sec]: 0.000 
+Total time elapsed: 31.925 sec
+0%                          100%
+[##############################] | ETA[sec]: 0.000 
+Total time elapsed: 31.622 sec
+0%                          100%
+[##############################] | ETA[sec]: 0.000 
+Total time elapsed: 32.017 sec
+0%                          100%
+[##############################] | ETA[sec]: 0.000 
+Total time elapsed: 32.056 sec
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">morris_analyze</span><span class="o">.</span><span class="n">analyze</span><span class="p">(</span>
+    <span class="n">problem</span><span class="p">,</span> 
+    <span class="n">morris_values</span><span class="p">,</span> 
+    <span class="n">morris_results</span><span class="p">,</span>
+    <span class="n">print_to_console</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">grid_jump</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">num_levels</span><span class="o">=</span><span class="mi">4</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Parameter Mu Sigma Mu_Star Mu_Star_Conf
+charge rate -75.099992 65.351399 75.099992 63.364872
+battery capacity -5.015735 4.372564 5.015735 4.152109
+energy consumption 39623.433616 76.984437 39623.433616 75.231915
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;mu&#39;: array([ -7.50999920e+01,  -5.01573538e+00,   3.96234336e+04]),
+ &#39;mu_star&#39;: array([  7.50999920e+01,   5.01573538e+00,   3.96234336e+04]),
+ &#39;mu_star_conf&#39;: [63.364872166356314, 4.152109196125445, 75.231915167509598],
+ &#39;names&#39;: [&#39;charge rate&#39;, &#39;battery capacity&#39;, &#39;energy consumption&#39;],
+ &#39;sigma&#39;: array([ 65.35139858,   4.37256388,  76.98443734])}
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="sobol-sequence">
+<h2>Sobol sequence<a class="headerlink" href="#sobol-sequence" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sobol_values</span> <span class="o">=</span> <span class="n">saltelli_sample</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">problem</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">sobol_results</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">sobol_values</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">sobol_values</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+    <span class="n">sobol_results</span><span class="p">[</span><span class="n">row</span><span class="p">]</span> <span class="o">=</span> <span class="n">objective_function</span><span class="p">(</span><span class="n">sobol_values</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="p">:])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0%                          100%
+[##############################] | ETA[sec]: 0.000 
+Total time elapsed: 35.337 sec
+0%                          100%
+[##############################] | ETA[sec]: 0.000 
+Total time elapsed: 32.676 sec
+0%                          100%
+[##############################] | ETA[sec]: 0.000 
+Total time elapsed: 33.141 sec
+0%                          100%
+[##############################] | ETA[sec]: 0.000 
+Total time elapsed: 32.795 sec
+0%                          100%
+[##############################] | ETA[sec]: 0.000 
+Total time elapsed: 32.070 sec
+0%                          100%
+[##############################] | ETA[sec]: 0.000 
+Total time elapsed: 31.851 sec
+0%                          100%
+[##############################] | ETA[sec]: 0.000 
+Total time elapsed: 32.772 sec
+0%                          100%
+[##############################] | ETA[sec]: 0.000 
+Total time elapsed: 35.251 sec
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sobol_analyze</span><span class="o">.</span><span class="n">analyze</span><span class="p">(</span>
+    <span class="n">problem</span><span class="p">,</span> 
+    <span class="n">sobol_results</span><span class="p">,</span>
+    <span class="n">print_to_console</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Parameter S1 S1_conf ST ST_conf
+charge rate -0.030786 0.000000 0.000003 0.000000
+battery capacity -0.007104 0.000000 0.000000 0.000000
+energy consumption 24.036327 0.000000 2.016670 0.000000
+
+Parameter_1 Parameter_2 S2 S2_conf
+charge rate battery capacity 0.105155 0.000000
+charge rate energy consumption 0.120143 0.000000
+battery capacity energy consumption 0.018379 0.000000
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;S1&#39;: array([ -3.07863712e-02,  -7.10410046e-03,   2.40363272e+01]),
+ &#39;S1_conf&#39;: array([  2.05027445e-17,   0.00000000e+00,   6.99827013e-15]),
+ &#39;S2&#39;: array([[        nan,  0.10515483,  0.12014306],
+        [        nan,         nan,  0.01837918],
+        [        nan,         nan,         nan]]),
+ &#39;S2_conf&#39;: array([[             nan,   8.20109781e-17,   0.00000000e+00],
+        [             nan,              nan,   0.00000000e+00],
+        [             nan,              nan,              nan]]),
+ &#39;ST&#39;: array([  3.30838132e-06,   1.76163831e-07,   2.01666968e+00]),
+ &#39;ST_conf&#39;: array([  8.34258810e-22,   0.00000000e+00,   1.74956753e-15])}
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "brightway-lca/jupyter-book-brightway-documentation",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./notebooks/1_lca_seminars"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="2015_lca_seminar_1_introduction.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Class 1: Introduction and setting up a simple LCA calculation</p>
+        </div>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Brightway Contributors<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

@@ -1,0 +1,907 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Class 1: Introduction and setting up a simple LCA calculation &#8212; Brightway Documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Class 7 - Sensitivity testing" href="2015_lca_seminar_2_sensitivity.html" />
+    <link rel="prev" title="Welcome to your Jupyter Book" href="../../0_main_page.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint">Work in progress!</div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Brightway Documentation</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../0_main_page.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Class 1: Introduction and setting up a simple LCA calculation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="2015_lca_seminar_2_sensitivity.html">
+   Class 7 - Sensitivity testing
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Class 1: Introduction and setting up a simple LCA calculation
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/brightway-lca/jupyter-book-brightway-documentation/master?urlpath=lab/tree/docs/notebooks/1_lca_seminars/2015_lca_seminar_1_introduction.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/notebooks/1_lca_seminars/2015_lca_seminar_1_introduction.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Class 1: Introduction and setting up a simple LCA calculation
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#setup">
+   Setup
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#import-ecoinvent-2-2">
+   Import ecoinvent 2.2
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#do-some-calculations">
+   Do some calculations
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Class 1: Introduction and setting up a simple LCA calculation</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Class 1: Introduction and setting up a simple LCA calculation
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#setup">
+   Setup
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#import-ecoinvent-2-2">
+   Import ecoinvent 2.2
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#do-some-calculations">
+   Do some calculations
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="class-1-introduction-and-setting-up-a-simple-lca-calculation">
+<h1>Class 1: Introduction and setting up a simple LCA calculation<a class="headerlink" href="#class-1-introduction-and-setting-up-a-simple-lca-calculation" title="Permalink to this headline">#</a></h1>
+<p>Note: this notebook is based on <a class="reference external" href="http://nbviewer.ipython.org/urls/bitbucket.org/cmutel/brightway2/raw/default/notebooks/Tutorial%204%20-%20Meta-analysis.ipynb">Brightway2 tutorial 4 - meta-analysis</a>.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="setup">
+<h1>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">#</a></h1>
+<p>Import the necessary libraries</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">brightway2</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pyprind</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+<span class="kn">import</span> <span class="nn">random</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="nn">Input In [1],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">brightway2</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">pyprind</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;brightway2&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Set a new project for this class session</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">projects</span><span class="o">.</span><span class="n">current</span> <span class="o">=</span> <span class="s2">&quot;Class 1&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Import the basic biosphere and LCIA methods (requires internet connection)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bw2setup</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Creating default biosphere
+
+Applying strategy: normalize_units
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing activities to SQLite3 database:
+0%                          100%
+[##############################] | ETA[sec]: 0.000 
+Total time elapsed: 0.337 sec
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Applying strategy: drop_unspecified_subcategories
+Applied 2 strategies in 0.01 seconds
+Title: Writing activities to SQLite3 database:
+  Started: 10/19/2015 09:46:40
+  Finished: 10/19/2015 09:46:40
+  Total time elapsed: 0.337 sec
+  CPU %: 96.100000
+  Memory %: 0.325644
+Created database: biosphere3
+Creating default LCIA methods
+
+Applying strategy: normalize_units
+Applying strategy: set_biosphere_type
+Applying strategy: drop_unspecified_subcategories
+Applying strategy: link_iterable_by_fields
+Applied 4 strategies in 1.00 seconds
+Wrote 692 LCIA methods with 170915 characterization factors
+Creating core data migrations
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="import-ecoinvent-2-2">
+<h1>Import ecoinvent 2.2<a class="headerlink" href="#import-ecoinvent-2-2" title="Permalink to this headline">#</a></h1>
+<p>We are using version 2.2 to make the calculations a bit quicker, as this is intended to be run during the class.</p>
+<p>First, extract the data from the XML files.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ei</span> <span class="o">=</span> <span class="n">SingleOutputEcospold1Importer</span><span class="p">(</span><span class="s2">&quot;/Users/cmutel/Documents/LCA Documents/Ecoinvent/2.2/processes&quot;</span><span class="p">,</span> <span class="s2">&quot;ecoinvent 2.2&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Extracting ecospold1 files:
+0%                          100%
+[##############################] | ETA[sec]: 0.000 | Item ID: /Users/cmutel/D
+Total time elapsed: 8.460 sec
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Title: Extracting ecospold1 files:
+  Started: 10/19/2015 09:48:02
+  Finished: 10/19/2015 09:48:10
+  Total time elapsed: 8.460 sec
+  CPU %: 78.700000
+  Memory %: 0.845587
+Extracted 4087 datasets in 8.51 seconds
+</pre></div>
+</div>
+</div>
+</div>
+<p>On windows, you will need to escape your backslashes by repeating them twice, e.g.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ei</span> <span class="o">=</span> <span class="n">SingleOutputEcospold1Importer</span><span class="p">(</span><span class="s2">&quot;c:</span><span class="se">\\</span><span class="s2">Users</span><span class="se">\\</span><span class="s2">cmutel</span><span class="se">\\</span><span class="s2">Process_infra_roh&quot;</span><span class="p">,</span> <span class="s2">&quot;ecoinvent 2.2&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, we normalize some values, and link the different datasets to each other and the basic biosphere</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ei</span><span class="o">.</span><span class="n">apply_strategies</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Applying strategy: normalize_units
+Applying strategy: assign_only_product_as_production
+Applying strategy: clean_integer_codes
+Applying strategy: drop_unspecified_subcategories
+Applying strategy: normalize_biosphere_categories
+Applying strategy: normalize_biosphere_names
+Applying strategy: strip_biosphere_exc_locations
+Applying strategy: set_code_by_activity_hash
+Applying strategy: link_iterable_by_fields
+Applying strategy: link_technosphere_by_activity_hash
+Applied 10 strategies in 2.35 seconds
+</pre></div>
+</div>
+</div>
+</div>
+<p>Check to make sure everything is linked</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ei</span><span class="o">.</span><span class="n">statistics</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4087 datasets
+135892 exchanges
+0 unlinked exchanges
+  
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(4087, 135892, 0)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally, write the database</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ei</span><span class="o">.</span><span class="n">write_database</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing activities to SQLite3 database:
+0%                          100%
+[##############################] | ETA[sec]: 0.000 
+Total time elapsed: 10.019 sec
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Title: Writing activities to SQLite3 database:
+  Started: 10/19/2015 10:36:24
+  Finished: 10/19/2015 10:36:34
+  Total time elapsed: 10.019 sec
+  CPU %: 91.900000
+  Memory %: 0.883520
+Created database: ecoinvent 2.2
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Brightway2 SQLiteBackend: ecoinvent 2.2
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">databases</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;biosphere3&#39;, &#39;ecoinvent 2.2&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">methods</span><span class="p">)[:</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;CML 2001&#39;, &#39;photochemical oxidation (summer smog)&#39;, &#39;MIR&#39;),
+ (&#39;ReCiPe Endpoint (H,A)&#39;, &#39;human health&#39;, &#39;ionising radiation&#39;),
+ (&#39;eco-indicator 99, (H,A) w/o LT&#39;,
+  &#39;ecosystem quality w/o LT&#39;,
+  &#39;total w/o LT&#39;),
+ (&#39;EDIP&#39;, &#39;resource consumption&#39;, &#39;non-renewable resources, mercury&#39;),
+ (&#39;IMPACT 2002+ (Endpoint)&#39;, &#39;human health&#39;, &#39;human toxicity&#39;),
+ (&#39;ReCiPe Endpoint (H,A) w/o LT&#39;,
+  &#39;resources w/o LT&#39;,
+  &#39;fossil depletion w/o LT&#39;),
+ (&#39;EDIP2003&#39;, &#39;global warming&#39;, &#39;GWP 20a&#39;),
+ (&#39;EDIP&#39;, &#39;resource consumption&#39;, &#39;non-renewable resources, natural gas&#39;),
+ (&#39;IMPACT 2002+ (Endpoint)&#39;,
+  &#39;ecosystem quality&#39;,
+  &#39;terrestrial acidification &amp; nutrification&#39;),
+ (&#39;EDIP2003&#39;, &#39;ecotoxicity&#39;, &#39;acute, in water&#39;)]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="do-some-calculations">
+<h1>Do some calculations<a class="headerlink" href="#do-some-calculations" title="Permalink to this headline">#</a></h1>
+<p>We select the new database we just created, and then use a bit of trickiness to get random ordering. All datasets have the <code class="docutils literal notranslate"><span class="pre">type</span></code> <code class="docutils literal notranslate"><span class="pre">&quot;process&quot;</span></code>, so this is equivalent to random ordering.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span> <span class="o">=</span> <span class="n">Database</span><span class="p">(</span><span class="s2">&quot;ecoinvent 2.2&quot;</span><span class="p">)</span>
+<span class="n">db</span><span class="o">.</span><span class="n">order_by</span> <span class="o">=</span> <span class="s2">&quot;type&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Many of the built-in LCIA methods are too narrowly focused - we pre-select a set of candidates to use for our meta-calculations.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">CANDIDATES</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">([</span>
+ <span class="p">(</span><span class="sa">u</span><span class="s1">&#39;CML 2001&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;acidification potential&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;average European&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="sa">u</span><span class="s1">&#39;CML 2001&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;climate change&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;GWP 100a&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="sa">u</span><span class="s1">&#39;CML 2001&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;eutrophication potential&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;average European&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="sa">u</span><span class="s1">&#39;CML 2001&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;freshwater aquatic ecotoxicity&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;FAETP 100a&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="sa">u</span><span class="s1">&#39;CML 2001&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;human toxicity&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;HTP 100a&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="sa">u</span><span class="s1">&#39;CML 2001&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;land use&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;competition&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="sa">u</span><span class="s1">&#39;CML 2001&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;marine aquatic ecotoxicity&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;MAETP infinite&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="sa">u</span><span class="s1">&#39;CML 2001&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;resources&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;depletion of abiotic resources&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="sa">u</span><span class="s1">&#39;CML 2001&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;stratospheric ozone depletion&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;ODP 25a&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="sa">u</span><span class="s1">&#39;EDIP2003&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;ecotoxicity&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;in sewage treatment plants&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="sa">u</span><span class="s1">&#39;EDIP2003&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;eutrophication&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;terrestrial eutrophication&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="sa">u</span><span class="s1">&#39;EDIP2003&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;renewable resources&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;wood&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="sa">u</span><span class="s1">&#39;EDIP2003&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;stratospheric ozone depletion&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;ODP total&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="sa">u</span><span class="s1">&#39;EPS 2000&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;total&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;abiotic stock resources&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="sa">u</span><span class="s1">&#39;EPS 2000&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;total&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;emissions into soil&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="sa">u</span><span class="s1">&#39;EPS 2000&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;total&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;emissions into water&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="sa">u</span><span class="s1">&#39;EPS 2000&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;total&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;land occupation&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="sa">u</span><span class="s1">&#39;IMPACT 2002+ (Endpoint)&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;ecosystem quality&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;land occupation&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="sa">u</span><span class="s1">&#39;IMPACT 2002+ (Endpoint)&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;human health&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;ozone layer depletion&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="sa">u</span><span class="s1">&#39;IMPACT 2002+ (Endpoint)&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;resources&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;mineral extraction&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="sa">u</span><span class="s1">&#39;IMPACT 2002+ (Endpoint)&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;resources&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;non-renewable energy&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="sa">u</span><span class="s1">&#39;IMPACT 2002+ (Midpoint)&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;ecosystem quality&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;aquatic acidification&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="sa">u</span><span class="s1">&#39;IPCC 2001&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;climate change&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;GWP 100a&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="sa">u</span><span class="s1">&#39;ReCiPe Endpoint (H,A)&#39;</span><span class="p">,</span>
+  <span class="sa">u</span><span class="s1">&#39;ecosystem quality&#39;</span><span class="p">,</span>
+  <span class="sa">u</span><span class="s1">&#39;agricultural land occupation&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="sa">u</span><span class="s1">&#39;ReCiPe Endpoint (H,A)&#39;</span><span class="p">,</span>
+  <span class="sa">u</span><span class="s1">&#39;ecosystem quality&#39;</span><span class="p">,</span>
+  <span class="sa">u</span><span class="s1">&#39;freshwater eutrophication&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="sa">u</span><span class="s1">&#39;ReCiPe Endpoint (H,A)&#39;</span><span class="p">,</span>
+  <span class="sa">u</span><span class="s1">&#39;ecosystem quality&#39;</span><span class="p">,</span>
+  <span class="sa">u</span><span class="s1">&#39;natural land transformation&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="sa">u</span><span class="s1">&#39;ReCiPe Endpoint (H,A)&#39;</span><span class="p">,</span>
+  <span class="sa">u</span><span class="s1">&#39;ecosystem quality&#39;</span><span class="p">,</span>
+  <span class="sa">u</span><span class="s1">&#39;terrestrial acidification&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="sa">u</span><span class="s1">&#39;ReCiPe Endpoint (H,A)&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;ecosystem quality&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;urban land occupation&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="sa">u</span><span class="s1">&#39;ReCiPe Endpoint (H,A)&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;human health&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;particulate matter formation&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="sa">u</span><span class="s1">&#39;ReCiPe Endpoint (H,A)&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;resources&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;fossil depletion&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="sa">u</span><span class="s1">&#39;TRACI&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;environmental impact&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;acidification&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="sa">u</span><span class="s1">&#39;TRACI&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;environmental impact&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;eutrophication&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="sa">u</span><span class="s1">&#39;TRACI&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;environmental impact&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;global warming&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="sa">u</span><span class="s1">&#39;TRACI&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;environmental impact&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;ozone depletion&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="sa">u</span><span class="s1">&#39;TRACI&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;human health&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;respiratory effects, average&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="sa">u</span><span class="s1">&#39;eco-indicator 99, (H,A)&#39;</span><span class="p">,</span>
+  <span class="sa">u</span><span class="s1">&#39;ecosystem quality&#39;</span><span class="p">,</span>
+  <span class="sa">u</span><span class="s1">&#39;acidification &amp; eutrophication&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="sa">u</span><span class="s1">&#39;eco-indicator 99, (H,A)&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;ecosystem quality&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;ecotoxicity&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="sa">u</span><span class="s1">&#39;eco-indicator 99, (H,A)&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;ecosystem quality&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;land occupation&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="sa">u</span><span class="s1">&#39;eco-indicator 99, (H,A)&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;human health&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;carcinogenics&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="sa">u</span><span class="s1">&#39;eco-indicator 99, (H,A)&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;human health&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;climate change&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="sa">u</span><span class="s1">&#39;eco-indicator 99, (H,A)&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;human health&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;ozone layer depletion&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="sa">u</span><span class="s1">&#39;eco-indicator 99, (H,A)&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;resources&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;fossil fuels&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="sa">u</span><span class="s1">&#39;eco-indicator 99, (H,A)&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;resources&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;mineral extraction&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="sa">u</span><span class="s1">&#39;ecological footprint&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;total&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;CO2&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="sa">u</span><span class="s1">&#39;ecological footprint&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;total&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;land occupation&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="sa">u</span><span class="s1">&#39;ecological footprint&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;total&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;nuclear&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="sa">u</span><span class="s1">&#39;ecological scarcity 2006&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;total&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;deposited waste&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="sa">u</span><span class="s1">&#39;ecological scarcity 2006&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;total&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;emission into groundwater&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="sa">u</span><span class="s1">&#39;ecological scarcity 2006&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;total&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;energy resources&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="sa">u</span><span class="s1">&#39;ecological scarcity 2006&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;total&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;natural resources&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="sa">u</span><span class="s1">&#39;ecosystem damage potential&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;total&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;linear, land occupation&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="sa">u</span><span class="s1">&#39;ecosystem damage potential&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;total&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;linear, land transformation&#39;</span><span class="p">),</span>
+<span class="p">])</span>
+
+<span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="n">x</span> <span class="ow">in</span> <span class="n">methods</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">CANDIDATES</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;There are </span><span class="si">%s</span><span class="s2"> methods to test&quot;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">CANDIDATES</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>There are 52 methods to test
+</pre></div>
+</div>
+</div>
+</div>
+<p>Choose ten LCIA methods and 500 datasets from ecoinvent 2.2 at random</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chosen_methods</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">CANDIDATES</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">chosen_processes</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">obj</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">db</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">index</span> <span class="o">&gt;=</span> <span class="mi">500</span><span class="p">:</span>
+        <span class="k">break</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">chosen_processes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Set up the LCA object, optimized to do many calculations.</p>
+<p>See <a class="reference external" href="http://chris.mutel.org/fast-dont-lie.html">making LCA calculations faster</a> blog post for more details on factorization.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lca</span> <span class="o">=</span> <span class="n">LCA</span><span class="p">({</span><span class="n">chosen_processes</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span> <span class="mi">1</span><span class="p">},</span> <span class="n">method</span><span class="o">=</span><span class="n">chosen_methods</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">lca</span><span class="o">.</span><span class="n">lci</span><span class="p">(</span><span class="n">factorize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">lca</span><span class="o">.</span><span class="n">lcia</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Create an array to store our LCA results - processes on rows, methods on columns</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">500</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Do 5000 LCA calculations in a single thread. Store the results in <code class="docutils literal notranslate"><span class="pre">results</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bar</span> <span class="o">=</span> <span class="n">pyprind</span><span class="o">.</span><span class="n">ProgBar</span><span class="p">(</span><span class="mi">5000</span><span class="p">,</span> <span class="n">monitor</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">col</span><span class="p">,</span> <span class="n">method</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">chosen_methods</span><span class="p">):</span>
+    <span class="n">lca</span><span class="o">.</span><span class="n">method</span> <span class="o">=</span> <span class="n">method</span>
+    <span class="n">lca</span><span class="o">.</span><span class="n">load_lcia_data</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">row</span><span class="p">,</span> <span class="n">process</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">chosen_processes</span><span class="p">):</span>
+        <span class="n">lca</span><span class="o">.</span><span class="n">redo_lcia</span><span class="p">({</span><span class="n">process</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
+        <span class="n">results</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">lca</span><span class="o">.</span><span class="n">score</span>
+        <span class="n">bar</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">bar</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0%                          100%
+[##############################] | ETA[sec]: 0.000 
+Total time elapsed: 22.971 sec
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Title: 
+  Started: 09/29/2015 23:22:36
+  Finished: 09/29/2015 23:22:59
+  Total time elapsed: 22.971 sec
+  CPU %: 98.000000
+  Memory %: 5.591297
+</pre></div>
+</div>
+</div>
+</div>
+<p>We only care about processes which have non-zero LCA scores - there are a few processes in ecoinvent 2.2 which we want to filter automatically (if they are selected in our earlier random sample).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ignoring </span><span class="si">{}</span><span class="s2"> processes&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">((</span><span class="o">~</span><span class="n">mask</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ignoring 8 processes
+</pre></div>
+</div>
+</div>
+</div>
+<p>Calculate the rank-order correlation for all processes</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">create_correlation_matrix</span><span class="p">(</span><span class="n">scores_array</span><span class="p">):</span>
+    <span class="n">num_methods</span> <span class="o">=</span> <span class="n">scores_array</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">correlations</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">num_methods</span><span class="p">,</span> <span class="n">num_methods</span><span class="p">))</span>
+
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_methods</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_methods</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">col</span> <span class="o">&lt;=</span> <span class="n">row</span><span class="p">:</span>
+                <span class="k">continue</span>                               <span class="c1"># Only need to compute correlation once</span>
+            <span class="n">dataset_1</span> <span class="o">=</span> <span class="n">scores_array</span><span class="p">[:,</span> <span class="n">row</span><span class="p">]</span>
+            <span class="n">dataset_2</span> <span class="o">=</span> <span class="n">scores_array</span><span class="p">[:,</span> <span class="n">col</span><span class="p">]</span>
+            <span class="n">mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">dataset_1</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">dataset_2</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="c1"># Ignore activities that have zero score</span>
+            <span class="n">correlations</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">kendalltau</span><span class="p">(</span> <span class="c1"># Get tau value, drop p-statistic</span>
+                <span class="n">dataset_1</span><span class="p">[</span><span class="n">mask</span><span class="p">],</span> 
+                <span class="n">dataset_2</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>
+            <span class="p">)[</span><span class="mi">0</span><span class="p">]</span>  
+
+    <span class="k">return</span> <span class="n">correlations</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">correlation_matrix</span> <span class="o">=</span> <span class="n">create_correlation_matrix</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="n">mask</span><span class="p">,</span> <span class="p">:])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Visualize the results</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
+
+<span class="n">masked_correlation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">correlation_matrix</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">correlation_matrix</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">pcolor</span><span class="p">(</span><span class="n">masked_correlation</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">cubehelix_r</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;Kendall $\tau$ rank-order correlation coefficient&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.0, 10.0, 0.0, 10.0)
+</pre></div>
+</div>
+<img alt="../../_images/2015_lca_seminar_1_introduction_37_1.png" src="../../_images/2015_lca_seminar_1_introduction_37_1.png" />
+</div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "brightway-lca/jupyter-book-brightway-documentation",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./notebooks/1_lca_seminars"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="../../0_main_page.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Welcome to your Jupyter Book</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="2015_lca_seminar_2_sensitivity.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Class 7 - Sensitivity testing</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Brightway Contributors<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
