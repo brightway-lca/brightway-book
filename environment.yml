@@ -2,8 +2,4 @@ name: bw
 channels:
   - conda-forge
 dependencies:
-  - pandas
-  - numpy
-  # plotting
-  - matplotlib
   - cmutel::brightway2
