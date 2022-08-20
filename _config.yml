@@ -6,42 +6,60 @@
 # https://jupyterbook.org/en/stable/start/publish.html
 # ghp-import -n -p -f _build/html
 
+# configuration defaults
+# https://jupyterbook.org/en/stable/customize/config.html
+
+#######################################################################################
+# book settings
 title: Brightway Documentation
 author: Brightway Contributors
 logo: aux/logo.png
+only_build_toc_files: true
+
+#######################################################################################
+# book settings
+https://jupyterbook.org/en/stable/customize/config.html
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
 execute:
   execute_notebooks: force
+  allow_errors: false
 
-# executable content
+#######################################################################################
+# HTML-specific settings
+
+html:
+  favicon: aux/favicon.png
+  use_repository_button: true
+  announcement: "⚠️ Work in progress! ⚠️"
+
+#######################################################################################
+# LaTeX-specific settings
+latex:
+  latex_engine: pdflatex  # one of 'pdflatex', 'xelatex' (recommended for unicode), 'luatex', 'platex', 'uplatex'
+  use_jupyterbook_latex: true
+
+#######################################################################################
+# executable content settings
 # https://jupyterbook.org/en/stable/interactive/launchbuttons.html#launchbuttons-binder
 # https://jupyterbook.org/en/stable/interactive/thebe.html
+
 launch_buttons:
-  binderhub_url: "https://mybinder.org"
   notebook_interface: "jupyterlab"
+  binderhub_url: "https://mybinder.org"
   thebe: true
 
-# references
-bibtex_bibfiles:
-  - references.bib
-sphinx:
-  config:
-    bibtex_reference_style: author_year
-
-# Information about where the book exists on the web
 repository:
   url: https://github.com/brightway-lca/jupyter-book-brightway-documentation
   path_to_book: docs  # Optional path to your book, relative to the repository root
   branch: master  # Which branch of the repository should be used when creating links (optional)
 
-# Add GitHub buttons to your book
-# See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
-html:
-  use_issues_button: true
-  use_repository_button: true
+#######################################################################################
+# bibliography settings
 
-# announcement banner
-html:
-  announcement: "Work in progress!"
+bibtex_bibfiles:
+  - references.bib
+sphinx:
+  config:
+    bibtex_reference_style: author_year
