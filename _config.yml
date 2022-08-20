@@ -56,7 +56,7 @@ repository:
 # bibliography settings
 
 bibtex_bibfiles:
-  - references.bib
+  - bibliography/references.bib
 sphinx:
   config:
     bibtex_reference_style: author_year
