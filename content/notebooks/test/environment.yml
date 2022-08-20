@@ -1,0 +1,5 @@
+name: bw
+channels:
+  - conda-forge
+dependencies:
+  - ksmet1977::luxpy
