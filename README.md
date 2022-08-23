@@ -2,4 +2,9 @@
 
 ℹ️ `jupyter-book` based documentation
 
-📚 for reference, compare the [`jupyter-book` documentation](https://jupyterbook.org/en/stable/intro.html)
+📚 for reference, compare the `jupyter-book`:
+
+1. [documentation](https://jupyterbook.org/en/stable/intro.html)
+2. [feature requests queue](https://executablebooks.org/en/latest/feature-vote.html)
+3. [discussions on GitHub](https://github.com/orgs/executablebooks/discussions)
+
