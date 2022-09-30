@@ -1,0 +1,16 @@
+name: bw_exio
+channels:
+  - cmutel
+  - conda-forge
+dependencies:
+  - bw2calc=2.0.dev5
+  - git>=2.34.1
+  - pip=21.3.1
+  - python=3.9.7
+  - notebook=6.4.6
+  - pypardiso=0.4.0
+  - pip:
+    - git+https://github.com/brightway-lca/bw_migrations
+    - git+https://github.com/brightway-lca/brightway2-data@IOTable-update 
+    - git+https://github.com/brightway-lca/brightway2-io@exiobase3_hybrid_importer
+    - git+https://github.com/brightway-lca/mrio_common_metadata@include-waste-flows
