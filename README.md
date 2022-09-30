@@ -1,7 +1,7 @@
 # Brightway Documentation (JupyterBooks)
 
 [![Join the chat at https://gitter.im/brightway-lca/documentation](https://badges.gitter.im/brightway-lca/documentation.svg)](https://gitter.im/brightway-lca/documentation?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/brightway-lca/brightway-documentation-jupyter-books/discussions)
 
 ## ⁉️ FAQ
 
@@ -18,7 +18,7 @@ C'est La Vie
 _"Where can I get help beyond the documentation?"_ \
 Use the Gitter channel linked above.
 
-## Instructions
+## ☑️ Instructions
 
 1. clone the repository
 2. follow the [`jupyter-book` setup instructions](https://jupyterbook.org/en/stable/start/overview.html)
@@ -52,7 +52,3 @@ Compare the `jupyter-book`:
 1. [documentation](https://jupyterbook.org/en/stable/intro.html)
 2. [feature requests queue](https://executablebooks.org/en/latest/feature-vote.html)
 3. [discussions on GitHub](https://github.com/orgs/executablebooks/discussions)
-
-## ℹ️ Information
-
-This interactive documentation was developed as part of the [2022 Brightcon Hackathon](http://web.archive.org/web/20220928071845/https://2022.brightcon.link/programme/).
