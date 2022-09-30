@@ -13,7 +13,7 @@
 # book settings
 title: Brightway Documentation
 author: Brightway Contributors
-logo: aux/logo.png
+logo: auxiliary/logo.png
 only_build_toc_files: true
 
 #######################################################################################
@@ -27,7 +27,7 @@ execute:
 # HTML-specific settings
 
 html:
-  favicon: aux/favicon.png
+  favicon: auxiliary/favicon.png
   use_repository_button: true
   announcement: "⚠️ Work in progress! ⚠️"
 
