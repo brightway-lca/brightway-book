@@ -1,0 +1,4 @@
+You will understand all the basics of working with BW, conda, terminal, github,...
+
+You can create an environment, a project, open a notebook ---> and even be able to find and open these the next day again!
+
