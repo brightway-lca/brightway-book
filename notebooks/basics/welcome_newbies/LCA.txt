@@ -1,0 +1,9 @@
+LCA basics
+Prof. Pauliuk course material/Industrial Ecology Open Online Course:
+https://www.industrialecology.uni-freiburg.de/teaching.aspx/
+
+Awesome LCA:
+https://github.com/alpby/awesome-lca
+
+LCA Information Hub:
+https://github.com/michaelweinold/public_site_lca
