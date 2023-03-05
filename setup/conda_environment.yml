@@ -1,0 +1,18 @@
+name: interactive
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  # core functionality
+  - python=3.11
+  # data science
+  - ipython
+  # jupyter book
+  - jupyter-book
+  - jupyterlab
+  # pip packages (not in any conda channel)
+  - pip
+  - pip:
+    # "jupyterlite will soon be available on conda forge"
+    # https://jupyterlite.readthedocs.io/en/latest/quickstart/standalone.html#get-an-empty-jupyterlite-site
+    - jupyterlite
