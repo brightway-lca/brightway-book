@@ -1,0 +1,36 @@
+name: emforge
+channels:
+  - conda-forge
+dependencies:
+  - python
+  - empack >=2,<3
+  - colorama
+  - ruamel
+  - ruamel.yaml <0.17.6
+  - rich
+  - mamba >= 0.23.1
+  - micromamba >= 0.23.1
+  - jsonschema
+  - cython
+  - patchelf
+  - liblief
+  - py-lief
+  - conda
+  - conda-build
+  - pyyaml
+  - click == 8.0.4
+  - typer >= 0.7.0
+  - quetz-client <= 0.0.4
+  - boa
+  - nodejs >= 18.7.0
+  - pydantic
+  - pytest
+  - networkx
+  # - microsoft::playwright #not currently available for M1 https://anaconda.org/Microsoft/playwright
+  - pip
+  - pip:
+    - playwright # compare https://github.com/emscripten-forge/recipes/issues/277#issuecomment-1466135476
+    # - git+https://github.com/DerThorsten/boa.git@python_api # compare https://github.com/emscripten-forge/recipes/blob/2dfdbdc5bc421a9b645aa64ce130ef6c7fa9eb02/.github/workflows/build_recipes.yaml#L83
+    # - git+https://github.com/emscripten-forge/pyjs-code-runner.git # compare https://github.com/emscripten-forge/recipes/blob/2dfdbdc5bc421a9b645aa64ce130ef6c7fa9eb02/.github/workflows/build_recipes.yaml#L84
+
+
