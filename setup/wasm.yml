@@ -16,3 +16,4 @@ dependencies:
     # "jupyterlite will soon be available on conda forge"
     # https://jupyterlite.readthedocs.io/en/latest/quickstart/standalone.html#get-an-empty-jupyterlite-site
     - jupyterlite
+    - jupyterlite-xeus-python
