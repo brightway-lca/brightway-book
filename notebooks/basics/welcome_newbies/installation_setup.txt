@@ -1,2 +1,0 @@
-BW documentation which is already online
-how to create an environment, install conda, what is a terminal window

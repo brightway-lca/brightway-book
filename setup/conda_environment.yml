@@ -1,0 +1,10 @@
+name: jbook
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  # core functionality
+  - python=3.11
+  # jupyter book
+  - jupyter-book=0.15.1
+  - ghp-import=2.1.0
