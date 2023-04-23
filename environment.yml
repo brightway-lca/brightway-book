@@ -1,0 +1,9 @@
+name: jbook
+channels:
+    - conda-forge
+dependencies:
+    # core functionality
+    - python=3.11
+    # jupyter
+    - jupyterlab=3.6.3
+    - jupyter-book=0.15.1
