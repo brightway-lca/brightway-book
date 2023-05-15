@@ -20,10 +20,10 @@ git clone https://github.com/brightway-lca/brightway-learn.git
 
 ### Setup Python Environment
 
-A [Conda environment file](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html) is provided [for convenient setup](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file). The file is located at [``./environment.yml``](environment.yml). Set up a Python virtual environment that includes all packages required to build the documentation. Install the environment `jbook` by running from the repository root directory:
+Set up a Python virtual environment that includes all packages required to build the documentation. A [Conda environment file](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html) is provided [for convenient setup](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file). The file is located at [``./environment.yml``](environment.yml). Install the environment `jbook` by running from the repository root directory:
 
 ```bash
-conda env create -f 'environment.yml'
+conda env create -f environment.yml
 ```
 
 and activate the environment:
