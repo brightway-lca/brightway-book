@@ -6,7 +6,7 @@ on:
     branches:
     - main
     paths: # only trigger when files within this directory change
-     - content
+     - content/**
 
 jobs:
   deploy-book:
