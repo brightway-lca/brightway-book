@@ -3,12 +3,11 @@ name: build-and-deploy-book
 on:
   workflow_dispatch: # manually trigger the workflow
   push: # trigger the workflow on push events
-    branches: # only trigger when changes are pushed to the main branch
+    branches:
     - main
     paths: # only trigger when files within this directory change
      - content
 
-# This job installs dependencies, builds the book, and pushes it to `gh-pages`
 jobs:
   deploy-book:
     runs-on: ubuntu-latest
@@ -23,8 +22,16 @@ jobs:
         auto-update-conda: true
         environment-file: ./environment.yml
         activate-environment: jbook
+        auto-activate-base: false
         miniforge-variant: Mambaforge
         miniforge-version: latest
+
+    - name: Display Conda information
+        run: |
+          conda config --show-sources
+          conda config --show
+          conda info
+          conda list
 
     - name: Build the book
       run: |
