@@ -27,11 +27,11 @@ jobs:
         miniforge-version: latest
 
     - name: Display Conda information
-        run: |
-          conda config --show-sources
-          conda config --show
-          conda info
-          conda list
+      run: |
+        conda config --show-sources
+        conda config --show
+        conda info
+        conda list
 
     - name: Build the book
       run: |
