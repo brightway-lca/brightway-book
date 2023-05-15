@@ -22,6 +22,7 @@ jobs:
       with: # https://github.com/marketplace/actions/setup-miniconda
         auto-update-conda: true
         environment-file: ./environment.yml
+        activate-environment: jbook
         miniforge-variant: Mambaforge
         miniforge-version: latest
 
