@@ -19,7 +19,7 @@ jobs:
     - name: Install Conda build environment
       uses: conda-incubator/setup-miniconda@v2 # https://github.com/conda-incubator/setup-miniconda/releases
       with: # https://github.com/marketplace/actions/setup-miniconda
-        auto-update-conda: true
+        auto-update-conda: false
         environment-file: ./environment.yml
         activate-environment: jbook
         auto-activate-base: false
