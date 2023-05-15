@@ -27,6 +27,7 @@ jobs:
         miniforge-version: latest
 
     - name: Display Conda information
+      shell: bash -el {0} # https://github.com/conda-incubator/setup-miniconda#important
       run: |
         conda config --show-sources
         conda config --show
@@ -34,9 +35,10 @@ jobs:
         conda list
 
     - name: Build the book
+      shell: bash -el {0} # https://github.com/conda-incubator/setup-miniconda#important
       run: |
         jupyter-book build .
-      shell: bash -el {0}
+      
 
     - name: Publish to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3.9.3 # https://github.com/peaceiris/actions-gh-pages/releases
