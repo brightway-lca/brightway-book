@@ -15,10 +15,10 @@ jobs:
     steps:
   
     - name: Checkout the repository
-    - uses: actions/checkout@v3 # https://github.com/actions/checkout/releases
+      uses: actions/checkout@v3 # https://github.com/actions/checkout/releases
 
     - name: Install Conda build environment
-    - uses: conda-incubator/setup-miniconda@v2 # https://github.com/conda-incubator/setup-miniconda/releases
+      uses: conda-incubator/setup-miniconda@v2 # https://github.com/conda-incubator/setup-miniconda/releases
       with: # https://github.com/marketplace/actions/setup-miniconda
         auto-update-conda: true
         environment-file: ./environment.yml
