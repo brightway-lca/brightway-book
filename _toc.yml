@@ -2,14 +2,11 @@
 # Learn more at https://jupyterbook.org/customize/toc.html
 
 format: jb-book
-root: content/0_main_page
+root: content/home
 parts:
-  - caption: Some notebooks from the brightway2 repo
+  - caption: A testing Jupyter Notebook
     chapters:
-      - file: content/notebooks/1_lca_seminars/2015_lca_seminar_1_introduction
-      - file: content/notebooks/1_lca_seminars/2015_lca_seminar_2_sensitivity
-      - file: content/notebooks/1_lca_seminars/2015_lca_seminar_3_hybrid
-  - caption: Testing only!
+      - file: content/notebooks/test.ipynb
+  - caption: A testing Markdown file
     chapters:
-      - file: content/markdown/1_hybridization
-      - file: content/notebooks/test/3_executable
+      - file: content/markdown/hybridization.md
