@@ -8,6 +8,10 @@
 
 The interactive learning and teaching documentation for the Brightway life-cycle assessment software package. [GitHub Actions](https://github.com/features/actions) and [Github Pages](https://pages.github.com/) with the [Jupyter Book Theme](https://jupyterbook.org/en/stable/intro.html) and the [Thebe tool](https://thebe.readthedocs.io/en/stable/) used to build/host the interactive documentation.
 
+| static documentation | interactive documentation | development playground |
+| ---- | ------------- | ------------- |
+| [docs.brightway.dev](https://github.com/brightway-lca/brightway-documentation) | [learn.brightway.dev](https://github.com/brightway-lca/brightway-learn) | [hub.brightway.dev](https://github.com/brightway-lca/brightway-hub) | 
+
 ## Quickstart
 
 ### Setup Repository
