@@ -6,7 +6,6 @@
 # Icon must end with two \r
 Icon
 
-
 # Thumbnails
 ._*
 
@@ -27,4 +26,4 @@ Temporary Items
 .apdisk
 
 # GitHub Pages / Jupyter-Book Specific
-_build/**
+_build

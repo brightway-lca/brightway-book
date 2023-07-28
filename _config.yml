@@ -49,7 +49,7 @@ launch_buttons:
 
 repository:
   url: https://github.com/brightway-lca/jupyter-book-brightway-documentation
-  branch: master
+  branch: main
 
 #######################################################################################
 # bibliography settings
