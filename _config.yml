@@ -29,7 +29,7 @@ execute:
 html:
   favicon: auxiliary/favicon.png
   use_repository_button: true
-  announcement: "⚠️ Work in progress! ⚠️"
+  announcement: "This website is in the early stages of development. No useful content is hosted here currently."
 
 #######################################################################################
 # LaTeX-specific settings
