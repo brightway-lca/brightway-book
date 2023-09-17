@@ -11,7 +11,7 @@
 
 #######################################################################################
 # book settings
-title: Brightway Documentation
+title: Brightway Learn
 author: Brightway Contributors
 logo: auxiliary/logo.png
 only_build_toc_files: true
@@ -29,7 +29,7 @@ execute:
 html:
   favicon: auxiliary/favicon.png
   use_repository_button: true
-  announcement: "This website is in the early stages of development. No useful content is hosted here currently."
+  announcement: "⚠️ Brightway Learn is in Public Beta ⚠️"
 
 #######################################################################################
 # LaTeX-specific settings
@@ -45,10 +45,10 @@ latex:
 launch_buttons:
   notebook_interface: "classic"
   binderhub_url: "https://mybinder.org"
-  thebe: true
+  thebe: false
 
 repository:
-  url: https://github.com/brightway-lca/jupyter-book-brightway-documentation
+  url: https://github.com/brightway-lca/brightway-learn
   branch: main
 
 #######################################################################################

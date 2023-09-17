@@ -6,5 +6,5 @@ root: content/home
 parts:
   - caption: Getting Started
     chapters:
-      - file: content/notebooks/BW2_for_dummies.ipynb
-      - file: content/notebooks/BW25_for_dummies.ipynb
+      - file: content/notebooks/BW2_for_beginners.ipynb
+      - file: content/notebooks/BW25_for_beginners.ipynb
