@@ -4,9 +4,7 @@
 format: jb-book
 root: content/home
 parts:
-  - caption: A testing Jupyter Notebook
+  - caption: Getting Started
     chapters:
-      - file: content/notebooks/test.ipynb
-  - caption: A testing Markdown file
-    chapters:
-      - file: content/markdown/hybridization.md
+      - file: content/notebooks/BW2_for_dummies.ipynb
+      - file: content/notebooks/BW25_for_dummies.ipynb
