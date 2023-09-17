@@ -5,5 +5,5 @@ dependencies:
     # core functionality
     - python=3.11 # https://anaconda.org/conda-forge/python/files
     # jupyter
-    - jupyterlab=4.0.3 # https://anaconda.org/conda-forge/jupyterlab/files
+    - jupyterlab=4.0.6 # https://anaconda.org/conda-forge/jupyterlab/files
     - jupyter-book=0.15.1 # https://anaconda.org/conda-forge/jupyter-book/files
