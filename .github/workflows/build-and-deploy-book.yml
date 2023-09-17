@@ -1,4 +1,4 @@
-name: build-and-deploy-book
+name: Build and Deploy Book
 
 on:
   workflow_dispatch: # manually trigger the workflow
