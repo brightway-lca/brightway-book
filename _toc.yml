@@ -8,3 +8,6 @@ parts:
     chapters:
       - file: content/notebooks/BW2_for_beginners.ipynb
       - file: content/notebooks/BW25_for_beginners.ipynb
+  - caption: Contributing
+    chapters:
+      - file: content/markdown/contributing.md
