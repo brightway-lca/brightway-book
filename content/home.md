@@ -1,4 +1,4 @@
-# "Learn Brightway" Homepage
+# "Learn Brightway" Book
 
 ## What is Brightway
 
