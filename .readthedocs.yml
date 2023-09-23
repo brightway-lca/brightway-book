@@ -1,8 +1,5 @@
 version: 2
 
-conda:
-   environment: environment.yml
-
 build:
   os: ubuntu-22.04
   tools:
@@ -11,3 +8,10 @@ build:
     pre_build:
       # Generate the Sphinx configuration for this Jupyter Book so it builds.
       - "jupyter-book config sphinx"
+
+conda:
+   environment: environment.yml
+
+sphinx:
+  builder: html
+  fail_on_warning: false
