@@ -11,3 +11,4 @@ parts:
   - caption: Contributing
     chapters:
       - file: content/markdown/contributing.md
+      - file: content/markdown/errors.md
