@@ -1,11 +1,3 @@
-# build book project
-# https://jupyterbook.org/en/stable/start/build.html
-# jb build .
-
-# publish book project to gh-pages
-# https://jupyterbook.org/en/stable/start/publish.html
-# ghp-import -n -p -f _build/html
-
 # configuration defaults
 # https://jupyterbook.org/en/stable/customize/config.html
 
