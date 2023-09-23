@@ -1,16 +1,16 @@
 version: 2
 
+conda:
+   environment: docs/environment.yaml
+
 build:
   os: ubuntu-22.04
   tools:
-    python: "3.11"
+    python: "mambaforge-22.9" # https://docs.readthedocs.io/en/stable/config-file/v2.html#build-tools-python, mamba instead of conda for better build performance
   jobs:
     pre_build:
       # Generate the Sphinx configuration for this Jupyter Book so it builds.
       - "jupyter-book config sphinx content/"
-
-conda:
-   environment: docs/environment.yaml
 
 sphinx:
   builder: html
