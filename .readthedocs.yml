@@ -1,7 +1,7 @@
 version: 2
 
 conda:
-   environment: environment.yaml
+   environment: environment.yml
 
 build:
   os: ubuntu-22.04
