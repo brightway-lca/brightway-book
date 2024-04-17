@@ -4,7 +4,7 @@
 ![License](https://img.shields.io/github/license/brightway-lca/brightway-learn?color=green&logo=Open%20Source%20Initiative&logoColor=white) [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat&logo=GitHub)](https://github.com/brightway-lca/brightway-documentation-readthedocs/discussions) \
 Maintainance Team: [@michaelweinold](https://github.com/michaelweinold)
 
-The interactive learning and teaching documentation for the Brightway life-cycle assessment software package. [GitHub Actions](https://github.com/features/actions) and [Github Pages](https://pages.github.com/) with the [Jupyter Book Theme](https://jupyterbook.org/en/stable/intro.html) and the [Thebe tool](https://thebe.readthedocs.io/en/stable/) are used to build/host the interactive documentation.
+The interactive learning and teaching documentation for the Brightway life-cycle assessment software package. [Readthedocs.org](https://about.readthedocs.com/?ref=readthedocs.com) with the [Jupyter Book Theme](https://jupyterbook.org/en/stable/intro.html) and the [Thebe tool](https://thebe.readthedocs.io/en/stable/) are used to build/host the interactive documentation.
 
 | static documentation | interactive documentation | development playground |
 | ---- | ------------- | ------------- |
@@ -50,7 +50,7 @@ _build/html/index.html
 
 ### Publishing the Documentation
 
-1. Merge your changes into the `main` branch. As soon aschanges have been merged, [the GitHub Action `build-and-deploy-book`](.github/workflows/build-and-deploy-book.yml) will build the documentation and deploy it to GitHub pages.
+1. Merge your changes into the `main` branch. As soon aschanges have been merged, Readthedocs.org will build the documentation and deploy it.
 
 ## 📚 References
 
