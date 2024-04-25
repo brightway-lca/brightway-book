@@ -14,10 +14,10 @@ The interactive learning and teaching documentation for the Brightway life-cycle
 
 ### Setup Repository
 
-1. Clone this repository:
+1. [Clone this repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository):
 
 ```bash
-git clone https://github.com/brightway-lca/brightway-learn.git
+git clone https://github.com/brightway-lca/brightway-book.git
 ```
 
 ### Setup Python Environment
@@ -36,6 +36,9 @@ conda activate jbook
 
 ### Building the Documentation
 
+> [!TIP]
+> You can check [the Jupyter Book documentation](https://jupyterbook.org/en/stable/intro.html) for further information on how to structure your content.
+
 1. You can build the documentation [by running the `build` command](https://jupyterbook.org/en/stable/start/build.html):
 
 ```bash
@@ -50,7 +53,7 @@ _build/html/index.html
 
 ### Publishing the Documentation
 
-1. Merge your changes into the `main` branch. As soon aschanges have been merged, Readthedocs.org will build the documentation and deploy it.
+1. [Create a pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) to have a maintainer merge your changes into the `main` branch. As soon aschanges have been merged, Readthedocs.org will build the documentation and deploy it.
 
 ## 📚 References
 
