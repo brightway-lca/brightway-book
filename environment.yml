@@ -3,7 +3,7 @@ channels:
     - conda-forge
 dependencies:
     # core functionality
-    - python=3.11 # https://anaconda.org/conda-forge/python/files
+    - python=3.12 # https://anaconda.org/conda-forge/python/files
     # jupyter
-    - jupyterlab=4.1.6 # https://anaconda.org/conda-forge/jupyterlab/files
+    - jupyterlab=4.2.1 # https://anaconda.org/conda-forge/jupyterlab/files
     - jupyter-book=1.0.0 # https://anaconda.org/conda-forge/jupyter-book/files

@@ -1,9 +1,9 @@
 version: 2
 
 build:
-  os: ubuntu-22.04
+  os: "ubuntu-lts-latest"
   tools:
-    python: "mambaforge-22.9" # https://docs.readthedocs.io/en/stable/config-file/v2.html#build-tools-python, mamba instead of conda for better build performance
+    python: "mambaforge-latest" # https://docs.readthedocs.io/en/stable/config-file/v2.html#build-tools-python, mamba instead of conda for better build performance
   jobs:
     pre_build:
       # Generate the Sphinx configuration for this Jupyter Book so it builds.
