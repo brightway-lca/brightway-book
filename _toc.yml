@@ -4,11 +4,17 @@
 format: jb-book
 root: content/home
 parts:
-  - caption: Getting Started
+  - caption: Brightway for Beginners
     chapters:
-      - file: content/notebooks/BW2_for_beginners.ipynb
-      - file: content/notebooks/BW25_for_beginners.ipynb
-  - caption: Contributing
+      - file: content/chapters/BW2_for_beginners.ipynb
+      - file: content/chapters/BW25_for_beginners.ipynb
+  - caption: Further Reading
     chapters:
-      - file: content/markdown/contributing.md
-      - file: content/markdown/errors.md
+      - file: content/auxiliary/materials.md
+  - caption: Improving the Book
+    chapters:
+      - file: content/auxiliary/contributing.md
+      - file: content/auxiliary/errors.md
+  - caption: Recent Updates to the Book
+    chapters:
+      - file: content/auxiliary/changelog.md

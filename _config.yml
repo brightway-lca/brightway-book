@@ -3,8 +3,8 @@
 
 #######################################################################################
 # book settings
-title: "Learn Brightway" Book
-author: Brightway Contributors
+title: Learn Brightway
+author: Brightway Contributors © 2024
 logo: auxiliary/logo.png
 only_build_toc_files: true
 
@@ -21,6 +21,15 @@ execute:
 html:
   favicon: auxiliary/favicon.png
   use_repository_button: true
+  # https://jupyterbook.org/en/stable/advanced/html.html#adding-a-license-to-your-html-footer
+  extra_footer: |
+    <p>
+    All content is licensed under a <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>
+    </p>
+
+sphinx:
+  config:
+    html_show_copyright: false
 
 #######################################################################################
 # LaTeX-specific settings
@@ -46,7 +55,8 @@ repository:
 # bibliography settings
 
 bibtex_bibfiles:
-  - bibliography/references.bib
+  - content/bibliography/references.bib
 sphinx:
   config:
     bibtex_reference_style: author_year
+    html_show_copyright: false
