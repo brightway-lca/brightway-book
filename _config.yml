@@ -3,7 +3,7 @@
 
 #######################################################################################
 # book settings
-title: Brightway Learn
+title: "Learn Brightway" Book
 author: Brightway Contributors
 logo: auxiliary/logo.png
 only_build_toc_files: true
@@ -21,7 +21,6 @@ execute:
 html:
   favicon: auxiliary/favicon.png
   use_repository_button: true
-  announcement: "⚠️ Brightway Learn is in Public Beta ⚠️"
 
 #######################################################################################
 # LaTeX-specific settings
@@ -34,10 +33,10 @@ latex:
 # https://jupyterbook.org/en/stable/interactive/launchbuttons.html#launchbuttons-binder
 # https://jupyterbook.org/en/stable/interactive/thebe.html
 
-launch_buttons:
-  notebook_interface: "classic"
-  binderhub_url: "https://mybinder.org"
-  thebe: false
+#launch_buttons:
+#  notebook_interface: "classic"
+#  binderhub_url: "https://mybinder.org"
+#  thebe: false
 
 repository:
   url: https://github.com/brightway-lca/brightway-learn
