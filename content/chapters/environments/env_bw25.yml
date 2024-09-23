@@ -1,10 +1,13 @@
-name: env_bw2
+name: env_bw25
 channels:
     - conda-forge
+    - cmutel
 dependencies:
     # core functionality
     - python=3.11 # https://anaconda.org/conda-forge/python/files
     # jupyter
     - jupyterlab=4.2.5 # https://anaconda.org/conda-forge/jupyterlab/files
     # Brightway
-    - brightway2=2.4.7 # https://anaconda.org/conda-forge/brightway2/files
+    - bw2io=0.9.dev38 # https://anaconda.org/cmutel/bw2io/files
+    - bw2calc=2.0.dev22 # https://anaconda.org/cmutel/bw2calc/files
+    - bw2data=4.0.dev54 # https://anaconda.org/cmutel/bw2data/files
