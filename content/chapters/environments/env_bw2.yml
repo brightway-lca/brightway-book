@@ -1,0 +1,10 @@
+name: env_bw2
+channels:
+    - conda-forge
+dependencies:
+    # core functionality
+    - python=3.11 # https://anaconda.org/conda-forge/python/files
+    # jupyter
+    - jupyterlab=4.2.5 # https://anaconda.org/conda-forge/jupyterlab/files
+    # Brightway
+    - brightway2=2.4.6 # https://anaconda.org/conda-forge/brightway2/files
