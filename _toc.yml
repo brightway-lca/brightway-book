@@ -4,13 +4,12 @@
 format: jb-book
 root: content/home
 parts:
-  - caption: Brightway2 Tutorials
+  - caption: Brightway2
     chapters:
-      - file: content/chapters/BW2_basics.ipynb
-      - file: content/chapters/BW2_first_LCA.ipynb
-  - caption: Brightway25 Tutorials
+      - file: content/chapters/BW2/BW2_introduction.ipynb
+  - caption: Brightway25
     chapters:
-      - file: content/chapters/BW25_for_beginners.ipynb
+      - file: content/chapters/BW25/BW25_introduction.ipynb
   - caption: Further Reading
     chapters:
       - file: content/auxiliary/materials.md
