@@ -11,3 +11,5 @@ dependencies:
     - bw2io=0.9.dev38 # https://anaconda.org/cmutel/bw2io/files
     - bw2calc=2.0.dev22 # https://anaconda.org/cmutel/bw2calc/files
     - bw2data=4.0.dev54 # https://anaconda.org/cmutel/bw2data/files
+    # plotting
+    - matplotlib
