@@ -6,4 +6,4 @@ dependencies:
     - python=3.12 # https://anaconda.org/conda-forge/python/files
     # jupyter
     - jupyterlab=4.2.5 # https://anaconda.org/conda-forge/jupyterlab/files
-    - jupyter-book=1.0.2 # https://anaconda.org/conda-forge/jupyter-book/files
+    - jupyter-book=1.0.0 # https://anaconda.org/conda-forge/jupyter-book/files
