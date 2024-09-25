@@ -7,6 +7,6 @@ First fully tested release of the "Learn Brightway" book. This release was prepa
 The book now includes:
 
 - a long section on Brightway2 by @KarinTreyer
-- a long section on Brightway25 by @alyabolowich based on ealier work of @maximikos
+- a long section on Brightway25 by @alyabolowich and @michaelweinold with the help of Sabina Bednářová based on ealier work of @maximikos.
 
-All sections were edited for publication by @michaelweinold, @mariashoeller and @mehdiiguider.
+All sections were edited for publication by @michaelweinold with the help of @mariashoeller and @mehdiiguider.
