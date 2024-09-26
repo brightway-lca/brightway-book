@@ -13,6 +13,7 @@
 | [New Brightway 2 Tutorial](https://github.com/maximikos/Brightway2_Intro) | 2019 | 2 | Maximilian Koslowski | includes overview of basic LCA matrix calculations |
 | [Brightway2/notebooks](https://github.com/brightway-lca/brightway2/tree/master/notebooks)  | 2015-2022 | 2 | Chris Mutel | |
 | [Brightway25/notebooks](https://github.com/brightway-lca/brightway25/tree/main/notebooks) | 2021 | 2 | Chris Mutel | |
+| [Brightway25 "From the Ground Up" Notebooks](https://github.com/brightway-lca/from-the-ground-up) | 2022- | 2.5 | Chris Mutel | |
 
 ## Auxiliary Files etc.
 
